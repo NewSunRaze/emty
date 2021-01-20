@@ -36,10 +36,23 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  outline: none !important;
 }
 body {
   height: 100vh;
   font-family: "Roboto", arial, sans-serif;
   color: #222;
+}
+a {
+  color: black;
+}
+a:link {
+  color: none; /* Цвет ссылок */
+}
+a:hover {
+  color: #bb9532;
+  text-shadow: 1px 1px 1px #bb9532;
+  color: none; /* Цвет ссылки */
+  text-decoration: none;
 }
 </style>

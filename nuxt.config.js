@@ -1,6 +1,7 @@
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
+    lang: "ru",
     title: "my-nuxt-app",
     meta: [
       { charset: "utf-8" },
