@@ -1,11 +1,11 @@
 <template>
   <div>
     <b-navbar toggleable="lg" type="dark" variant="light" class="px-5">
-      <b-navbar-brand size="large" class="logo">int.</b-navbar-brand>
+      <b-navbar-brand size="medium" class="logo">int.</b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-
-      <b-collapse id="nav-collapse" is-nav>
+      
+      <b-collapse id="nav-collapse" is-nav class="f20">
         <b-navbar-nav>
           <b-nav-item href="#">
             <NuxtLink to="/">First page</NuxtLink>
@@ -82,6 +82,10 @@ export default {};
 }
 </style>
 <style scoped>
+*{
+  font-weight: normal;
+  font-size: 1.1rem;
+}
 .logo {
   font-size: 2.5rem;
   color: black !important;

@@ -40,7 +40,6 @@ export default {
 }
 body {
   height: 100vh;
-  font-family: "Roboto", arial, sans-serif;
   color: #222;
 }
 a {
