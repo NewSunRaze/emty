@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="center">
+    <div class="centered">
       <div class="card" v-for="post in posts" :key="post.id">
         <h2>{{ post.title }}</h2>
         <hr />
@@ -55,7 +55,7 @@ body {
   margin-top: 20px;
 }
 
-.center {
+.centered {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;

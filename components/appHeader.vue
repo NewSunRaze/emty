@@ -1,12 +1,24 @@
 <template>
   <div>
-    <b-navbar toggleable="lg" type="dark" variant="light" class="px-5">
-      <b-navbar-brand size="medium" class="logo">int.</b-navbar-brand>
+    <b-navbar toggleable="lg" type="light" variant="light" class="col-12">
+      <b-navbar-brand size="medium" class="logo offset-sm-1 col-1"
+        >int.</b-navbar-brand
+      >
 
-      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-      
-      <b-collapse id="nav-collapse" is-nav class="f20">
-        <b-navbar-nav>
+      <toggle-input class="col-6 col-sm-5 col-lg-2"></toggle-input>
+      <b-navbar-toggle
+        target="nav-collapse"
+        variant="dark"
+        class=""
+        style=""
+      ></b-navbar-toggle>
+
+      <b-collapse
+        id="nav-collapse"
+        is-nav
+        class="col-8 col-sm-4 col-md-3 col-lg-8"
+      >
+        <b-navbar-nav class="col-6">
           <b-nav-item href="#">
             <NuxtLink to="/">First page</NuxtLink>
           </b-nav-item>
@@ -20,7 +32,7 @@
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
-        <b-navbar-nav class="ml-auto">
+        <b-navbar-nav class="offset-3 col-3">
           <b-nav-item-dropdown right menu-class="my-dropdown" offset="50">
             <!-- Using 'button-content' slot -->
             <template #button-content>
@@ -82,12 +94,12 @@ export default {};
 }
 </style>
 <style scoped>
-*{
+* {
   font-weight: normal;
   font-size: 1.1rem;
 }
 .logo {
-  font-size: 2.5rem;
+  font-size: 2.7rem;
   color: black !important;
   font-weight: bold;
 }
