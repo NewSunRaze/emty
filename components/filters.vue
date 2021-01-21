@@ -21,7 +21,7 @@ export default {};
   align-items: center;
 }
 .container {
-  font-size: 18px;
+  font-size: 14px;
   padding-top: 5px;
   padding-bottom: 5px;
   border-top: 1px solid #eed3e3;

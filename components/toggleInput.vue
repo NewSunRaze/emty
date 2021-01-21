@@ -24,7 +24,7 @@ export default {};
   height: 40px;
   background: #000;
   border-radius: 5px;
-  font-size: 20px;
+  font-size: 18px;
   color: white;
 }
 .toggle input {
@@ -53,8 +53,8 @@ export default {};
   content: "invest";
   position: absolute;
   transition: 0.4s all;
-  top: 4px;
-  left: 15px;
+  top: 7px;
+  left: 25px;
   color: black;
 }
 
@@ -64,8 +64,8 @@ export default {};
   content: "team";
   position: absolute;
   transition: 0.4s all;
-  top: 4px;
-  right: 20px;
+  top: 7px;
+  right: 30px;
 }
 .toggle input:checked ~ .labels:after {
   color: black;

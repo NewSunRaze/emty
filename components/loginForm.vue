@@ -40,8 +40,8 @@ export default {};
 </script>
 <style scoped>
 .container {
+  margin-top: 100px;
   width: 100%;
-  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;

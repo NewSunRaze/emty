@@ -96,7 +96,7 @@ export default {};
 <style scoped>
 * {
   font-weight: normal;
-  font-size: 1.1rem;
+  font-size: 16px;
 }
 .logo {
   font-size: 2.7rem;
