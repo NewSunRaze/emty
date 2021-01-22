@@ -2,7 +2,9 @@
   <div>
     <appHeader></appHeader>
     <filters></filters>
-    <Nuxt />
+    <div class="container">
+      <Nuxt />
+    </div>
   </div>
 </template>
 

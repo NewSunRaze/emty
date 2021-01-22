@@ -3,15 +3,19 @@
     <loading v-bind:show="loading" v-if="loading" />
 
     <div v-else>
-      <Posts />
+      <project-list />
+      <!-- <offers-list /> -->
     </div>
   </div>
 </template>
 
 <script>
 import loading from "../components/loading.vue";
+import OffersList from "../components/offersList.vue";
 import Posts from "../components/Posts.vue";
+import projectList from "../components/projectList.vue";
 export default {
+  components: { projectList, OffersList },
   async fetch({ store }) {
     await store.dispatch("posts/fetchPosts");
   },

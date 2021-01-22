@@ -17,7 +17,7 @@ export default {
     posts: []
   }),
   mounted() {
-    this.posts = this.$store.getters["posts/allPosts"];
+    // this.posts = this.$store.getters["firstPage/posts/allPosts"];
   }
 };
 </script>

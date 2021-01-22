@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="toggle">
-      <input type="checkbox" />
+      <input @click="changeMode()" v-bind="mode" type="checkbox" />
       <span class="btn"></span>
       <span class="labels"></span>
       <span class="bg"></span>
@@ -10,7 +10,25 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      mode: false
+    };
+  },
+  methods: {
+    async changeMode() {
+      const a = await this.$store.getters[
+        "firstPage/firstPage/changeToggleMode"
+      ];
+      if (a === "invest") {
+        this.mode = false;
+      } else if (a == "team") {
+        this.mode = true;
+      }
+    }
+  }
+};
 </script>
 
 <style scoped>
