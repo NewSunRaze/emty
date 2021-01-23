@@ -1,10 +1,10 @@
 export const state = () => ({
-  toggleMode: "invest"
+  toggleMode: false
 });
 
 export const mutations = {
-  setMode(state, toggleMode) {
-    state.toggleMode = toggleMode;
+  changeToggleMode(state) {
+    state.toggleMode = !state.toggleMode;
   }
 };
 
@@ -14,14 +14,13 @@ export const actions = {
   //     "https://jsonplaceholder.typicode.com/posts?_limit=5"
   //   );
   //  }
-  test({ commit }) {
-    const toggleMode = false;
-    commit("setMode", toggleMode);
+  callChangeToggleMode({ commit }) {
+    commit("changeToggleMode");
   }
 };
 
 export const getters = {
   changeToggleMode(state) {
-    return state.posts;
+    return state.toggleMode;
   }
 };

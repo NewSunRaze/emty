@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="toggle">
-      <input @click="changeMode()" v-bind="mode" type="checkbox" />
+      <input @click="changeMode()" v-model="mode" type="checkbox" />
       <span class="btn"></span>
       <span class="labels"></span>
       <span class="bg"></span>
@@ -13,22 +13,21 @@
 export default {
   data() {
     return {
-      mode: false
     };
   },
   methods: {
-    async changeMode() {
-      const a = await this.$store.getters[
-        "firstPage/firstPage/changeToggleMode"
-      ];
-      if (a === "invest") {
-        this.mode = false;
-      } else if (a == "team") {
-        this.mode = true;
-      }
+    changeMode() {
+      this.$store.dispatch('firstPage/firstPageStore/callChangeToggleMode')
     }
-  }
-};
+  },
+  computed:{
+    mode(){
+      return this.$store.getters[
+        "firstPage/firstPageStore/changeToggleMode"
+      ];
+    }
+  },
+}
 </script>
 
 <style scoped>

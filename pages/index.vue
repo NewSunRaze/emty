@@ -1,10 +1,12 @@
 <template>
   <div class="container">
-    <loading v-bind:show="loading" v-if="loading" />
+    <!-- <loading v-bind:show="loading" v-if="loading" /> -->
 
-    <div v-else>
-      <project-list />
-      <!-- <offers-list /> -->
+    <div>
+  <transition name="slide-fade" mode="out-in">
+      <offers-list v-if="invOrTeam" />
+      <project-list v-else/>
+  </transition>
     </div>
   </div>
 </template>
@@ -16,24 +18,42 @@ import Posts from "../components/Posts.vue";
 import projectList from "../components/projectList.vue";
 export default {
   components: { projectList, OffersList },
-  async fetch({ store }) {
-    await store.dispatch("posts/fetchPosts");
-  },
+  // async fetch({ store }) {
+  //   await store.dispatch("posts/fetchPosts");
+  // },
   data() {
     return {
       loading: true
     };
   },
-  mounted() {
+  async mounted() {
     this.loading = true;
     setTimeout(() => {
       this.loading = false;
     }, 2000);
+  },
+  computed:{
+    invOrTeam(){
+      return this.$store.getters[
+        "firstPage/firstPageStore/changeToggleMode"
+      ];
+    }
   }
 };
 </script>
 
 <style lang="scss">
+.slide-fade-enter-active {
+  transition: all .15s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-leave-active {
+  transition: all .15s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active до версии 2.1.8 */ {
+  transform: translateY(5px);
+  opacity: 0;
+}
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

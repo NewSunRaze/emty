@@ -28,7 +28,7 @@
               <!-- Using 'button-content' slot -->
               <template #button-content>
                 <em
-                  ><img class="profile_icon" src="~/assets/avatar.svg" alt=""
+                  ><img class="profile_icon" src="~/assets/header/avatar.svg" alt=""
                 /></em>
               </template>
 
@@ -44,7 +44,7 @@
             <b-nav-item-dropdown right menu-class="my-dropdown">
               <template #button-content>
                 <em
-                  ><img class="profile_icon" src="~/assets/dollar.svg" alt=""
+                  ><img class="profile_icon" src="~/assets/header/dollar.svg" alt=""
                 /></em>
               </template>
 

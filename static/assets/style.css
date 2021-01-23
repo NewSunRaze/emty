@@ -39,3 +39,6 @@ body {
   justify-content: center !important;
   align-items: center !important;
 }
+.btn .button button {
+  outline-style: none !important;
+}
