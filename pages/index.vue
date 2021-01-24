@@ -1,16 +1,13 @@
 <template>
   <div class="container">
-    <!-- <loading v-bind:show="loading" v-if="loading" /> -->
+    <!-- <loading v-bind:show="loading" v-if="loading" />  -->
 
-    <div>
-  <transition name="slide-fade" mode="out-in">
-      <offers-list v-if="invOrTeam" />
-      <project-list v-else/>
-  </transition>
-    </div>
+    <transition name="slide-fade" mode="out-in">
+        <offers-list v-if="invOrTeam" />
+        <project-list v-else/>
+    </transition>
   </div>
 </template>
-
 <script>
 import loading from "../components/loading.vue";
 import OffersList from "../components/offersList.vue";
@@ -30,7 +27,7 @@ export default {
     this.loading = true;
     setTimeout(() => {
       this.loading = false;
-    }, 2000);
+    }, 2000); 
   },
   computed:{
     invOrTeam(){
@@ -69,13 +66,13 @@ body {
 a {
   color: black;
 }
-a:link {
-  color: none; /* Цвет ссылок */
-}
-a:hover {
-  color: #bb9532;
-  text-shadow: 1px 1px 1px #bb9532;
-  color: none; /* Цвет ссылки */
-  text-decoration: none;
-}
+// a:link {
+//   color: none; /* Цвет ссылок */
+// }
+// a:hover {
+//   color: #bb9532;
+//   text-shadow: 1px 1px 1px #bb9532;
+//   color: none; /* Цвет ссылки */
+//   text-decoration: none;
+// }
 </style>

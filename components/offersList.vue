@@ -44,14 +44,21 @@
 <script>
 export default {};
 </script>
-
 <style scoped>
 @media only screen and (max-width: 960px) {
 .post_container{
-  max-width: 100% !important;
+  max-width: 95% !important;
   }
 .add_post{
-  width: 100% !important;
+  width: 95% !important;
+  }
+}
+@media only screen and (max-width: 540px) {
+.views_and_icons p{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   }
 }
 .ta-left {

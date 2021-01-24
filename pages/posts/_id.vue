@@ -1,9 +1,8 @@
 <template>
+<div class="container">
+    
   <div class="component_container center">
-    <div class="post_container add_post">
-      <h1>+ Add new project</h1>
-    </div>
-    <div class="post_container main_post" @click="openpost()">
+    <div class="post_container main_post">
       <div class="row_block">
          <div>
           <h3 class="ta-left">Custom Marketplace</h3>
@@ -37,11 +36,17 @@
           porro, quis unde repudiandae magnam!
         </p>
       </div>
+    <hr>
+    <div class="coments center">
+        <comments />
+    </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
+import comments from "@/components/comments.vue";
 export default {
   data() {
     return {
@@ -49,9 +54,6 @@ export default {
     };
   },
   methods:{
-    openpost(){
-      this.$router.push("/posts/"+ 1)
-    }
   },
   mounted() {
     const toggleMode = this.$store.getters[
@@ -71,9 +73,6 @@ export default {
 .post_container{
   max-width: 95% !important;
   }
-.add_post{
-  width: 95% !important;
-  }
 }
 .ta-left {
   text-align: left;
@@ -85,7 +84,7 @@ export default {
 .post_container {
   cursor: pointer;
   position: relative;
-  max-width: 70%;
+  max-width: 70% !important;
   text-align: center;
   background: #ffffff;
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
@@ -94,16 +93,6 @@ export default {
 }
 .post_container:hover{
   box-shadow: 0px 0px 8px rgba(0, 0, 0, .5);
-}
-.add_post {
-  width: 70%;
-  padding: 50px 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.add_post h1 {
-  font-size: 22px;
 }
 .main_post {
   padding: 20px 20px;

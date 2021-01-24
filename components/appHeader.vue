@@ -7,7 +7,7 @@
       class="container-fluid"
     >
       <div class="container">
-        <b-navbar-brand size="medium" class="logo col-1">int.</b-navbar-brand>
+        <b-navbar-brand size="medium" class="logo col-1" to="/">int.</b-navbar-brand>
 
         <toggle-input class="col-6 col-sm-5 col-xl-3 col-lg-3"></toggle-input>
         <b-navbar-toggle
@@ -49,9 +49,9 @@
               </template>
 
               <b-dropdown-item to="/">Home</b-dropdown-item>
-              <b-dropdown-item to="second">Second page</b-dropdown-item>
-              <b-dropdown-item to="login">login</b-dropdown-item>
-              <b-dropdown-item to="signup">Signup</b-dropdown-item>
+              <b-dropdown-item to="/second">Second page</b-dropdown-item>
+              <b-dropdown-item to="/login">login</b-dropdown-item>
+              <b-dropdown-item to="/signup">Signup</b-dropdown-item>
             </b-nav-item-dropdown>
           </b-navbar-nav>
         </b-collapse>
@@ -97,6 +97,10 @@ export default {};
   font-size: 2.7rem;
   color: black !important;
   font-weight: bold;
+}
+.logo:hover{
+  color:black !important;
+  box-shadow: none !important;
 }
 .profile_icon {
   width: 25px;
