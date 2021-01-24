@@ -1,6 +1,6 @@
 <template>
   <div class="component_container center">
-    <div class="post_container add_post">
+    <div class="post_container add_post" @click="goAdd()">
       <h1>+ Add new offer</h1>
     </div>
     <div class="post_container main_post">
@@ -42,7 +42,18 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data(){
+    return{
+
+    }
+  },
+  methods:{
+    goAdd(){
+      this.$router.push('/posts/create')
+    }
+  }
+};
 </script>
 <style scoped>
 @media only screen and (max-width: 960px) {

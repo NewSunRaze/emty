@@ -50,20 +50,11 @@ import comments from "@/components/comments.vue";
 export default {
   data() {
     return {
-      test: false
     };
   },
   methods:{
   },
   mounted() {
-    const toggleMode = this.$store.getters[
-      "firstPage/firstPage/changeToggleMode"
-    ];
-    if (toggleMode === "invest") {
-      this.test = false;
-    } else if (toggleMode === "team") {
-      this.test = true;
-    }
   }
 };
 </script>
@@ -84,7 +75,7 @@ export default {
 .post_container {
   cursor: pointer;
   position: relative;
-  max-width: 70% !important;
+  max-width: 70%;
   text-align: center;
   background: #ffffff;
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);

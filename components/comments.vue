@@ -1,27 +1,75 @@
 <template>
-<div class="container">
-    <h3>Comments (3)</h3>
-    <div class="posts_container">
-        <div class="post">
-            <div class="row">
-                <div class="userName_logo">Y</div>
+<div>
+    <div class="container">
+        <h3>Comments (3)</h3>
+        <div class="posts_container">
+            <div class="post" v-for="post in 3" :key="post">
+                <div class="row">
+                    <div class="userName_logo">Y</div>
+                    <p class="userName">UserName · 1h · <spnan class="gold">Autor</spnan></p>
+                </div>
                 <div>
-                    <p class="userName"><span>UserName</span><spnan> · </spnan><spnan>1h</spnan><spnan> · </spnan><spnan class="gold">Autor</spnan></p>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic, ratione.</p>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="input_container">
+        <input type="text" placeholder="Type message">
+        <button @click.prevent="send()"><img src="@/assets/common/send.svg" alt=""></button>
     </div>
 </div>
 </template>
 
 <script>
 export default {
+    data(){
+        return{
+
+        }
+    },
+    methods:{
+        send(){
+            alert(123)
+        }
+    }
 
 }
 </script>
 
 <style scoped>
+@media only screen and (max-width: 960px) {
+    .userName {
+        display: block;
+    }
+}
+.input_container{
+    width: 100%;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    background: black;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.input_container input{
+    width: 80%;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+    outline: none;
+}
+.input_container button{
+    position: relative;
+    width: 20%;
+    padding: 5px;
+    color: white;
+    background: black;
+    border: 1px solid black;
+}
+.input_container button img{
+    height: 20px;
+}
 .posts_container{
     display: flex;
     justify-content: center;
