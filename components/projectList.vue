@@ -1,6 +1,6 @@
 <template>
   <div class="component_container center">
-    <div class="post_container add_post">
+    <div class="post_container add_post" @click="goAdd()">
       <h1>+ Add new project</h1>
     </div>
     <div class="post_container main_post" @click="openpost()">
@@ -49,6 +49,9 @@ export default {
     };
   },
   methods:{
+    goAdd(){
+      this.$router.push('/posts/create')
+    },
     openpost(){
       this.$router.push("/posts/"+ 1)
     }
