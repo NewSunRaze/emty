@@ -1,115 +1,122 @@
 <template>
-<div>
+  <div>
     <div class="container">
-        <h3>Comments (3)</h3>
-        <div class="posts_container">
-            <div class="post" v-for="post in 3" :key="post">
-                <div class="row">
-                    <div class="userName_logo">Y</div>
-                    <p class="userName">UserName · 1h · <spnan class="gold">Autor</spnan></p>
-                </div>
-                <div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic, ratione.</p>
-                </div>
-            </div>
+      <h3>Comments (3)</h3>
+      <div class="posts_container">
+        <div class="post" v-for="post in 3" :key="post">
+          <div class="row">
+            <div class="userName_logo">Y</div>
+            <p class="userName">
+              UserName · 1h · <spnan class="gold">Autor</spnan>
+            </p>
+          </div>
+          <div>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic,
+              ratione.
+            </p>
+          </div>
         </div>
+      </div>
     </div>
     <div class="input_container">
-        <input type="text" placeholder="Type message">
-        <button @click.prevent="send()"><img src="@/assets/common/send.svg" alt=""></button>
+      <textarea type="text" placeholder="Type message"></textarea>
+      <button @click.prevent="send()">
+        <img src="@/assets/common/send.svg" alt="" />
+      </button>
     </div>
-</div>
+  </div>
 </template>
 
 <script>
 export default {
-    data(){
-        return{
-
-        }
-    },
-    methods:{
-        send(){
-            alert(123)
-        }
+  data() {
+    return {};
+  },
+  methods: {
+    send() {
+      alert(123);
     }
-
-}
+  }
+};
 </script>
 
 <style scoped>
 @media only screen and (max-width: 960px) {
-    .userName {
-        display: block;
-    }
+  .userName {
+    display: block;
+  }
 }
-.input_container{
-    width: 100%;
-    margin-top: 50px;
-    display: flex;
-    flex-direction: row;
-    background: black;
-    border-radius: 5px;
-    overflow: hidden;
+.input_container {
+  width: 100%;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  background: black;
+  border-radius: 5px;
+  overflow: hidden;
 }
-.input_container input{
-    width: 80%;
-    border: 1px solid black;
-    border-radius: 5px;
-    padding: 5px;
-    outline: none;
+.input_container textarea {
+  position: relative;
+  width: 80%;
+  height: 35px;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px;
+  outline: none;
+  resize: none;
+  overflow: auto;
 }
-.input_container button{
-    position: relative;
-    width: 20%;
-    padding: 5px;
-    color: white;
-    background: black;
-    border: 1px solid black;
+.input_container button {
+  position: relative;
+  width: 20%;
+  padding: 5px;
+  color: white;
+  background: black;
+  border: 1px solid black;
 }
-.input_container button img{
-    height: 20px;
+.input_container button img {
+  height: 20px;
 }
-.posts_container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+.posts_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
-.post{
-    margin-bottom: 20px;
+.post {
+  margin-bottom: 20px;
 }
-.post .row{
-    align-items: top;
+.post .row {
+  align-items: top;
 }
-.post p{
-    text-align: left;
+.post p {
+  text-align: left;
 }
-.contaier{
-    align-items: left;
-    display: flex;
-    flex-direction: column;
-    justify-content: center !important;
+.contaier {
+  align-items: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center !important;
 }
-.userName_logo{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    text-align: center;
-    padding: 3px;
-    margin-right: 10px;
-    width: 30px;
-    height: 30px;
-    background: #FFFFFF;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+.userName_logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  text-align: center;
+  padding: 3px;
+  margin-right: 10px;
+  width: 30px;
+  height: 30px;
+  background: #ffffff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
-.userName{
-    margin-top: 5px ;
-    color: #EED3E3;
+.userName {
+  margin-top: 5px;
+  color: #eed3e3;
 }
-.gold{
-    color: #BB9532;
-
+.gold {
+  color: #bb9532;
 }
 </style>

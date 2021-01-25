@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="toggle">
+    <div class="toggle" v-bind:style="{ background: bg }">
       <input @click="changeMode()" v-model="mode" type="checkbox" />
       <span class="btn"></span>
       <span class="labels"></span>
@@ -11,24 +11,24 @@
 
 <script>
 export default {
+  props: {
+    bg: String
+  },
   data() {
-    return {
-    };
+    return {};
   },
   methods: {
     changeMode() {
-      this.$store.dispatch('firstPage/firstPageStore/callChangeToggleMode')
-      this.$router.push('/')
+      this.$store.dispatch("firstPage/firstPageStore/callChangeToggleMode");
+      this.$router.push("/");
     }
   },
-  computed:{
-    mode(){
-      return this.$store.getters[
-        "firstPage/firstPageStore/changeToggleMode"
-      ];
+  computed: {
+    mode() {
+      return this.$store.getters["firstPage/firstPageStore/changeToggleMode"];
     }
-  },
-}
+  }
+};
 </script>
 
 <style scoped>
@@ -40,7 +40,6 @@ export default {
   position: relative;
   width: 200px;
   height: 40px;
-  background: #000;
   border-radius: 5px;
   font-size: 18px;
   color: white;

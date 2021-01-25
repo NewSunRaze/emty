@@ -7,9 +7,14 @@
       class="container-fluid"
     >
       <div class="container">
-        <b-navbar-brand size="medium" class="logo col-1" to="/">int.</b-navbar-brand>
+        <b-navbar-brand size="medium" class="logo col-1" to="/"
+          >int.</b-navbar-brand
+        >
 
-        <toggle-input class="col-6 col-sm-5 col-xl-3 col-lg-3"></toggle-input>
+        <toggle-input
+          class="col-6 col-sm-5 col-xl-3 col-lg-3"
+          bg="black"
+        ></toggle-input>
         <b-navbar-toggle
           target="nav-collapse"
           variant="dark"
@@ -28,7 +33,10 @@
               <!-- Using 'button-content' slot -->
               <template #button-content>
                 <em
-                  ><img class="profile_icon" src="~/assets/header/avatar.svg" alt=""
+                  ><img
+                    class="profile_icon"
+                    src="~/assets/header/avatar.svg"
+                    alt=""
                 /></em>
               </template>
 
@@ -44,7 +52,10 @@
             <b-nav-item-dropdown right menu-class="my-dropdown">
               <template #button-content>
                 <em
-                  ><img class="profile_icon" src="~/assets/header/dollar.svg" alt=""
+                  ><img
+                    class="profile_icon"
+                    src="~/assets/header/dollar.svg"
+                    alt=""
                 /></em>
               </template>
 
@@ -98,8 +109,8 @@ export default {};
   color: black !important;
   font-weight: bold;
 }
-.logo:hover{
-  color:black !important;
+.logo:hover {
+  color: black !important;
   box-shadow: none !important;
 }
 .profile_icon {
