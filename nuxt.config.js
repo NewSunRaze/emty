@@ -12,16 +12,19 @@ export default {
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: [
-    '@/assets/style.css'],
+  css: ["@/static/style.css"],
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [],
+  router: {
+    linkActiveClass: "active-link",
+    linkExactActiveClass: "exact-active-link"
+  },
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
-  buildModules: [], 
+  buildModules: [],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: ["@nuxtjs/axios", "bootstrap-vue/nuxt"],

@@ -40,11 +40,11 @@
                 /></em>
               </template>
 
-              <b-dropdown-item to="login">Log In</b-dropdown-item>
-              <b-dropdown-item to="signup" class="golden"
+              <b-dropdown-item to="/login">Log In</b-dropdown-item>
+              <b-dropdown-item to="/signup" class="golden"
                 >Sign Up</b-dropdown-item
               >
-              <b-dropdown-item white href="#">Profile</b-dropdown-item>
+              <b-dropdown-item white href="/profile/1">Profile</b-dropdown-item>
               <b-dropdown-item white href="#">Adds</b-dropdown-item>
               <b-dropdown-item white href="#">Notifications</b-dropdown-item>
             </b-nav-item-dropdown>
