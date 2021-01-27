@@ -1,13 +1,18 @@
 <template>
-  <div class="container">
-    <div class="wrap">
-      <div>
-        <h1>404</h1>
-        <h3>¯ \ _ (ツ) _ / ¯</h3>
-        <h2>Sorry, i didn't find this page</h2>
-        <nuxt-link to="/">Click at me and we will going at home page</nuxt-link>
+  <div>
+    <div class="container">
+      <div class="wrap">
+        <div>
+          <h1>404</h1>
+          <h3>¯ \ _ (ツ) _ / ¯</h3>
+          <h2>Sorry, i didn't find this page</h2>
+          <nuxt-link to="/"
+            >Click at me and we will going at home page</nuxt-link
+          >
+        </div>
       </div>
     </div>
+    <appFooter></appFooter>
   </div>
 </template>
 
