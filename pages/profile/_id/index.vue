@@ -57,6 +57,9 @@ export default {
 
 <style scoped>
 @media only screen and (max-width: 960px) {
+  .container {
+    padding-top: 25px !important;
+  }
   .btn_cont {
     display: flex;
     justify-content: center;

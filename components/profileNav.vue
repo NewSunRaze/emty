@@ -37,8 +37,6 @@ export default {};
 .my-col {
   padding-left: 30px;
 }
-a:active {
-}
 a:hover {
   text-decoration: none;
 }

@@ -4,15 +4,42 @@
       <div class="settings_wrapper">
         <div class="input_container">
           <p>Subscribes</p>
-          <input type="checkbox" />
+          <div class="slideThree first_input_cont">
+            <input
+              type="checkbox"
+              value="None"
+              id="first_input_cont"
+              name="check"
+              checked
+            />
+            <label for="first_input_cont"></label>
+          </div>
         </div>
         <div class="input_container">
-          <p>Subscribes</p>
-          <input type="checkbox" />
+          <p>Comments</p>
+          <div class="slideThree second_input_cont">
+            <input
+              type="checkbox"
+              value="None"
+              id="second_input_cont"
+              name="check"
+              checked
+            />
+            <label for="second_input_cont"></label>
+          </div>
         </div>
-        <div class="input_container">
-          <p>Subscribes</p>
-          <input type="checkbox" />
+        <div class="input_container third_input_cont">
+          <p>Relevance of the topic</p>
+          <div class="slideThree">
+            <input
+              type="checkbox"
+              value="None"
+              id="third_input_cont"
+              name="check"
+              checked
+            />
+            <label for="third_input_cont"></label>
+          </div>
         </div>
       </div>
     </div>
@@ -22,8 +49,8 @@
         <div class="row">
           <div class="text_wraper">
             <h5>Invest</h5>
-            <span>Region: Russia</span>
-            <span>Industru: IT</span>
+            <p>Region: <span>Russia</span></p>
+            <p>Industru: <span>IT</span></p>
           </div>
           <button>Subscribe</button>
         </div>
@@ -31,8 +58,8 @@
         <div class="row">
           <div class="text_wraper">
             <h5>Invest</h5>
-            <span>Region: Russia</span>
-            <span>Industru: IT</span>
+            <p>Region: <span>Russia</span></p>
+            <p>Industru: <span>IT</span></p>
           </div>
           <button>Subscribe</button>
         </div>
@@ -40,8 +67,8 @@
         <div class="row">
           <div class="text_wraper">
             <h5>Invest</h5>
-            <span>Region: Russia</span>
-            <span>Industru: IT</span>
+            <p>Region: <span>Russia</span></p>
+            <p>Industru: <span>IT</span></p>
           </div>
           <button>Unsubscribe</button>
         </div>
@@ -57,15 +84,28 @@ export default {
 </script>
 
 <style scoped>
+@media only screen and (max-width: 1200px) {
+  .subscribes,
+  .settings {
+    width: 75% !important;
+  }
+}
 @media only screen and (max-width: 960px) {
+  .settings_wrapper {
+    padding: 10px 40px !important;
+  }
+  .subscribes,
+  .settings {
+    width: 95% !important;
+  }
   button {
     margin-left: 30px !important;
   }
 }
 @media only screen and (max-width: 520px) {
-  .subscribes,
-  .settings {
-    max-width: 100% !important;
+  .input_container,
+  .settings_wrapper {
+    padding: 10px 15px !important;
   }
   button {
     margin-left: 5px !important;
@@ -87,25 +127,32 @@ button {
   padding: 20px 10%;
 }
 .input_container p {
-  margin-right: 40px;
   margin-bottom: 0;
 }
 .text_wraper span {
-  display: block;
+  font-weight: bold;
+}
+.text_wraper h5 {
+  font-weight: bold;
+}
+.text_wraper p {
+  margin: 0;
 }
 .text_wraper {
   text-align: left;
 }
 .input_container {
-  padding: 20px 70px;
+  width: 100%;
+  padding: 20px 50px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 .settings_wrapper input {
-  margin-left: 50px;
+  margin-left: 90px;
 }
 .settings_wrapper {
+  padding: 10px 100px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -113,9 +160,6 @@ button {
 }
 
 h4 {
-  /* color: white;
-  border-radius: 5px;
-  background-color: black; */
   margin-bottom: 20px;
   font-weight: bold;
 }
@@ -126,7 +170,7 @@ h4 {
   flex-direction: column;
   cursor: pointer;
   position: relative;
-  max-width: 70%;
+  width: 50%;
   text-align: center;
   background: #ffffff;
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
@@ -139,5 +183,67 @@ h4 {
   align-items: center;
   justify-content: center;
   margin-top: 50px;
+}
+
+.slideThree {
+  position: relative;
+  font-size: 12px;
+  width: 60px;
+  height: 26px;
+  background: #333;
+  position: relative;
+  cursor: pointer;
+  border-radius: 50px;
+  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5),
+    0px 1px 0px rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+}
+.slideThree:after {
+  content: "OFF";
+  color: #000;
+  position: absolute;
+  right: 6px;
+  top: 4px;
+  z-index: 0;
+  font-weight: bold;
+  text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.15);
+}
+.slideThree:before {
+  content: "ON";
+  color: white;
+  position: absolute;
+  left: 8px;
+  top: 4px;
+  z-index: 0;
+  font-weight: bold;
+}
+.slideThree label {
+  display: block;
+  width: 27px;
+  height: 20px;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  z-index: 1;
+  background: white;
+  border-radius: 50px;
+  transition: all 0.4s ease;
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
+}
+.slideThree input[type="checkbox"] {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+.first_input_cont input[type="checkbox"]:checked + label {
+  left: 30px;
+}
+.second_input_cont input[type="checkbox"]:checked + label {
+  left: 30px;
+}
+.third_input_cont input[type="checkbox"]:checked + label {
+  left: 30px;
 }
 </style>
