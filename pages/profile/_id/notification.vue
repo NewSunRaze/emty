@@ -5,46 +5,28 @@
         <div class="input_container">
           <p>Subscribes</p>
           <div class="slideThree first_input_cont">
-            <input
-              type="checkbox"
-              value="None"
-              id="first_input_cont"
-              name="check"
-              checked
-            />
+            <input type="checkbox" id="first_input_cont" name="check" />
             <label for="first_input_cont"></label>
           </div>
         </div>
         <div class="input_container">
           <p>Comments</p>
           <div class="slideThree second_input_cont">
-            <input
-              type="checkbox"
-              value="None"
-              id="second_input_cont"
-              name="check"
-              checked
-            />
+            <input type="checkbox" id="second_input_cont" name="check" />
             <label for="second_input_cont"></label>
           </div>
         </div>
         <div class="input_container third_input_cont">
           <p>Relevance of the topic</p>
           <div class="slideThree">
-            <input
-              type="checkbox"
-              value="None"
-              id="third_input_cont"
-              name="check"
-              checked
-            />
+            <input type="checkbox" id="third_input_cont" name="check" />
             <label for="third_input_cont"></label>
           </div>
         </div>
       </div>
     </div>
     <div class="subscribes">
-      <div class="mt-2">
+      <div>
         <h4>Subscribes</h4>
         <div class="row">
           <div class="text_wraper">
@@ -160,7 +142,7 @@ button {
 }
 
 h4 {
-  margin-bottom: 20px;
+  margin: 30px 0;
   font-weight: bold;
 }
 .settings,
@@ -168,7 +150,6 @@ h4 {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  cursor: pointer;
   position: relative;
   width: 50%;
   text-align: center;
@@ -192,7 +173,6 @@ h4 {
   height: 26px;
   background: #333;
   position: relative;
-  cursor: pointer;
   border-radius: 50px;
   box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5),
     0px 1px 0px rgba(255, 255, 255, 0.2);
@@ -222,6 +202,7 @@ h4 {
   width: 27px;
   height: 20px;
   position: absolute;
+  cursor: pointer;
   top: 3px;
   left: 3px;
   z-index: 1;

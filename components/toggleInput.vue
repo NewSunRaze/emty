@@ -2,7 +2,7 @@
   <div class="container">
     <div class="toggle" v-bind:style="{ background: bg }">
       <input @click="changeMode()" v-model="mode" type="checkbox" />
-      <span class="btn"></span>
+      <span class="toggle_btn"></span>
       <span class="labels"></span>
       <span class="bg"></span>
     </div>
@@ -54,7 +54,7 @@ export default {
   width: 100%;
   height: 100%;
 }
-.toggle .btn {
+.toggle .toggle_btn {
   position: absolute;
   top: 0;
   left: 0;
@@ -90,7 +90,7 @@ export default {
 .toggle input:checked ~ .labels:before {
   color: white;
 }
-.toggle input:checked ~ .btn {
+.toggle input:checked ~ .toggle_btn {
   left: 50%;
 }
 </style>

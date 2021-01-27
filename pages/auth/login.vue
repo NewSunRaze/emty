@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import loginForm from "../components/loginForm.vue";
+import loginForm from "@/components/loginForm.vue";
 export default {
   layout: "emty"
 };

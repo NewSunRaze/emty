@@ -1,40 +1,53 @@
 <template>
   <div class="container">
-    <b-form @submit="onSubmit" @reset="onReset" v-if="show" flex>
-      <b-form-group id="input-group-2" label="Your Name:" label-for="input-1">
-        <b-form-input
-          id="input-1"
-          v-model="form.name"
-          placeholder="Enter name"
-          required
-        ></b-form-input>
-      </b-form-group>
+    <h1>Create an account</h1>
+    <div class="form_container">
+      <b-form @submit="onSubmit" @reset="onReset" v-if="show" flex class="form">
+        <b-form-group
+          class="mb-3"
+          id="input-group-2"
+          label="Your Name:"
+          label-for="input-1"
+        >
+          <b-form-input
+            id="input-1"
+            v-model="form.name"
+            placeholder="Enter name"
+            required
+          ></b-form-input>
+        </b-form-group>
 
-      <b-form-group
-        id="input-group-2"
-        label="Email address:"
-        label-for="input-2"
-        description="We'll never share your email with anyone else."
-      >
-        <b-form-input
-          id="input-2"
-          v-model="form.email"
-          type="email"
-          placeholder="Enter email"
-          required
-        ></b-form-input>
-      </b-form-group>
-      <b-form-group id="input-group-3" label="Password:" label-for="input-3">
-        <b-form-input
-          id="input-3"
-          v-model="form.email"
-          type="password"
-          placeholder="Enter password"
-          required
-        ></b-form-input>
-      </b-form-group>
+        <b-form-group
+          class="mb-3"
+          id="input-group-2"
+          label="Email address:"
+          label-for="input-2"
+          description="We'll never share your email with anyone else."
+        >
+          <b-form-input
+            id="input-2"
+            v-model="form.email"
+            type="email"
+            placeholder="Enter email"
+            required
+          ></b-form-input>
+        </b-form-group>
+        <b-form-group
+          class="mb-3"
+          id="input-group-3"
+          label="Password:"
+          label-for="input-3"
+        >
+          <b-form-input
+            id="input-3"
+            v-model="form.email"
+            type="password"
+            placeholder="Enter password"
+            required
+          ></b-form-input>
+        </b-form-group>
 
-      <!-- <b-form-group id="input-group-3" label="Food:" label-for="input-3">
+        <!-- <b-form-group id="input-group-3" label="Food:" label-for="input-3">
         <b-form-select
           id="input-3"
           v-model="form.food"
@@ -43,19 +56,22 @@
         ></b-form-select>
       </b-form-group> -->
 
-      <b-form-group id="input-group-4" v-slot="{ ariaDescribedby }">
-        <b-form-checkbox-group
-          variant="dark"
-          v-model="form.checked"
-          id="checkboxes-4"
-          :aria-describedby="ariaDescribedby"
-        >
-          <b-form-checkbox value="me">Check me out</b-form-checkbox>
-        </b-form-checkbox-group>
-      </b-form-group>
+        <b-form-group id="input-group-4" v-slot="{ ariaDescribedby }">
+          <b-form-checkbox-group
+            variant="dark"
+            v-model="form.checked"
+            id="checkboxes-4"
+            :aria-describedby="ariaDescribedby"
+          >
+            <b-form-checkbox value="me">Check me out</b-form-checkbox>
+          </b-form-checkbox-group>
+        </b-form-group>
 
-      <b-button @click="onSubmit" variant="dark">Submit</b-button>
-    </b-form>
+        <b-button @click="onSubmit" variant="dark" class="but"
+          >Sign up</b-button
+        >
+      </b-form>
+    </div>
   </div>
 </template>
 
@@ -104,6 +120,22 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 100px;
+  flex-direction: column;
+}
+h1 {
+  text-align: center;
+  margin-top: 20px;
+}
+.but {
+  background: black;
+  padding: 5px 30px;
+  color: white;
+  border-radius: 5px;
+  margin-top: 50px;
+  border: 1px solid black;
+  margin-bottom: 30px;
+}
+.form {
+  margin-top: 20px;
 }
 </style>

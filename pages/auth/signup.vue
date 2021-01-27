@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import registrationForm from "../components/registrationForm.vue";
+import registrationForm from "@/components/registrationForm.vue";
 export default {
   components: { registrationForm },
   layout: "emty"

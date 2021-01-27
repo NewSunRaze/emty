@@ -40,8 +40,8 @@
                 /></em>
               </template>
 
-              <b-dropdown-item to="/login">Log In</b-dropdown-item>
-              <b-dropdown-item to="/signup" class="golden"
+              <b-dropdown-item to="/auth/login">Log In</b-dropdown-item>
+              <b-dropdown-item to="/auth/signup" class="golden"
                 >Sign Up</b-dropdown-item
               >
               <b-dropdown-item white href="/profile/1">Profile</b-dropdown-item>
@@ -61,8 +61,8 @@
 
               <b-dropdown-item to="/">Home</b-dropdown-item>
               <b-dropdown-item to="/second">Second page</b-dropdown-item>
-              <b-dropdown-item to="/login">login</b-dropdown-item>
-              <b-dropdown-item to="/signup">Signup</b-dropdown-item>
+              <b-dropdown-item to="/auth/login">login</b-dropdown-item>
+              <b-dropdown-item to="/auth/signup">Signup</b-dropdown-item>
             </b-nav-item-dropdown>
           </b-navbar-nav>
         </b-collapse>
