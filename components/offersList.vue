@@ -8,23 +8,27 @@
         <div>
           <h3 class="ta-left">FullStack developer</h3>
           <p class="ta-left">
-            <span>
-              <img src="@/assets/lists/map-pin.svg" alt="">
-            </span>Saint-Petersburg</p>
+            <span> <img src="@/assets/lists/map-pin.svg" alt="" /> </span
+            >Saint-Petersburg
+          </p>
         </div>
         <h3 class="cost">1.000 $</h3>
       </div>
       <div class="row_block views_and_icons">
         <p class="ta-left">
           <span>
-            <img src="@/assets/lists/check-circle.svg" alt="">
-          </span> actual</p>
+            <img src="@/assets/lists/check-circle.svg" alt="" />
+          </span>
+          actual
+        </p>
         <div class="row_block">
           <img src="~/assets/lists/pdf.svg" alt="" />
           <img src="~/assets/lists/xlsx.svg" alt="" />
           <img src="~/assets/lists/com.svg" alt="" />
         </div>
-        <p class="views">1234 <span><img src="@/assets/lists/eye.svg" alt=""></span></p>
+        <p class="views">
+          1234 <span><img src="@/assets/lists/eye.svg" alt=""/></span>
+        </p>
       </div>
       <div class="description">
         <p>
@@ -43,36 +47,34 @@
 
 <script>
 export default {
-  data(){
-    return{
-
-    }
+  data() {
+    return {};
   },
-  methods:{
-    goAdd(){
-      this.$router.push('/posts/create')
+  methods: {
+    goAdd() {
+      this.$router.push("/posts/create");
     },
-    openpost(){
-      this.$router.push("/posts/"+ 1)
+    openpost() {
+      this.$router.push("/posts/" + 1);
     }
   }
 };
 </script>
 <style scoped>
 @media only screen and (max-width: 960px) {
-.post_container{
-  max-width: 95% !important;
+  .post_container {
+    max-width: 95% !important;
   }
-.add_post{
-  width: 95% !important;
+  .add_post {
+    width: 95% !important;
   }
 }
 @media only screen and (max-width: 540px) {
-.views_and_icons p{
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
+  .views_and_icons p {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
   }
 }
 .ta-left {
@@ -92,8 +94,8 @@ export default {
   border-radius: 10px;
   margin-bottom: 20px;
 }
-.post_container:hover{
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, .5);
+.post_container:hover {
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
 }
 .add_post {
   width: 70%;
@@ -117,7 +119,7 @@ export default {
   justify-content: space-between;
   margin: 15px 0;
 }
-.row_block p img{
+.row_block p img {
   padding-right: 3px;
 }
 .cost {
@@ -136,12 +138,12 @@ export default {
 h3 {
   font-weight: 500;
 }
-span{
+span {
   width: 15px;
   padding: 0;
   margin: 0;
 }
-p{
+p {
   padding-left: 0;
 }
 </style>

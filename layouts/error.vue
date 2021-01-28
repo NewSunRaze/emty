@@ -21,6 +21,11 @@ export default {};
 </script>
 
 <style scoped>
+@media only screen and (max-width: 770px) {
+  .main {
+    padding-bottom: 150px !important;
+  }
+}
 .wrap {
   display: flex;
   align-items: center;
@@ -46,5 +51,8 @@ h3 {
 }
 h2 {
   font-weight: bold;
+}
+.main {
+  padding-bottom: 65px;
 }
 </style>

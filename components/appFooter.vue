@@ -26,19 +26,21 @@ export default {};
 <style scoped>
 @media only screen and (max-width: 770px) {
   .copyright,
-  .pay_system,
-  .admin_mail {
+  .pay_system {
     margin-bottom: 15px;
   }
   .row {
     flex-direction: column;
   }
 }
+.container {
+  align-items: center;
+}
 .container-fluid {
-  position: relative;
+  position: absolute;
   bottom: 0;
-  padding: 10px 0;
-  height: 20px;
+  padding: 15px 0;
+  background: white;
   border-top: 1px solid #eed3e3;
 }
 p {

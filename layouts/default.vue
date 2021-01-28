@@ -2,7 +2,7 @@
   <div>
     <appHeader></appHeader>
     <filters></filters>
-    <Nuxt />
+    <Nuxt class="main" />
     <appFooter></appFooter>
   </div>
 </template>
@@ -20,4 +20,13 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+@media only screen and (max-width: 770px) {
+  .main {
+    padding-bottom: 150px !important;
+  }
+}
+.main {
+  padding-bottom: 65px;
+}
+</style>

@@ -56,3 +56,7 @@ a:hover {
 a:active {
   color: black;
 }
+#__layout {
+  position: relative;
+  min-height: 100vh;
+}

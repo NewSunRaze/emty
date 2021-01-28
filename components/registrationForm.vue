@@ -67,9 +67,12 @@
           </b-form-checkbox-group>
         </b-form-group>
 
-        <b-button @click="onSubmit" variant="dark" class="but"
-          >Sign up</b-button
-        >
+        <div class="btn_cont">
+          <b-button @click="onSubmit" variant="dark" class="but"
+            >Sign Up</b-button
+          >
+          <nuxt-link to="/auth/login">or Sign in</nuxt-link>
+        </div>
       </b-form>
     </div>
   </div>
@@ -121,6 +124,7 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin: 40px auto;
 }
 h1 {
   text-align: center;
@@ -131,11 +135,17 @@ h1 {
   padding: 5px 30px;
   color: white;
   border-radius: 5px;
-  margin-top: 50px;
   border: 1px solid black;
+  margin-right: 30px;
+}
+.btn_cont {
+  margin-top: 30px;
   margin-bottom: 30px;
 }
 .form {
   margin-top: 20px;
+}
+a {
+  color: #eed3e3;
 }
 </style>
