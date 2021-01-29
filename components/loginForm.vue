@@ -5,8 +5,8 @@
       <b-form-group id="input-group-1" label="E-mail:" label-for="input-1">
         <b-form-input
           id="input-1"
-          v-model="form.email"
-          type="mail"
+          v-model="login.username"
+          type="email"
           placeholder="mail@example.com"
           required
         ></b-form-input>
@@ -15,23 +15,15 @@
       <b-form-group id="input-group-2" label="Password:" label-for="input-2">
         <b-form-input
           id="input-2"
-          v-model="form.name"
+          v-model="login.password"
           placeholder="Password"
           type="password"
           required
         ></b-form-input>
       </b-form-group>
 
-      <b-form-group id="input-group-4" v-slot="{ ariaDescribedby }">
-        <b-form-checkbox-group
-          v-model="form.checked"
-          id="checkboxes-4"
-          :aria-describedby="ariaDescribedby"
-        >
-        </b-form-checkbox-group>
-      </b-form-group>
       <div class="btn_cont">
-        <b-button @click="onSubmit" variant="dark" class="but"
+        <b-button @click.prevent="onSubmit" variant="dark" class="but"
           >Sign in</b-button
         >
         <nuxt-link to="/auth/signup">or Sign Up</nuxt-link>
@@ -44,17 +36,52 @@
 export default {
   data() {
     return {
-      form: {
-        email: "",
-        name: "",
-        checked: []
+      login: {
+        username: "",
+        password: ""
       }
     };
   },
   methods: {
-    onSubmit(event) {
-      event.preventDefault();
-      alert(JSON.stringify(this.form));
+    async onSubmit() {
+      console.log(this.login);
+      try {
+        const rez = await fetch("http://5.63.157.3/login", {
+          mode: "no-cors",
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json"
+          }
+          // body: {
+          //   login: "test",
+          //   password: "pass"
+          // }
+        });
+        const response = await rez.text();
+        console.log(response);
+
+        // fetch("https://jsonplaceholder.typicode.com/posts?_limit=5", {
+        //   method: "GET",
+        //   headers: {
+        //     "Content-Type": "application/json"
+        //   }
+        // }).then(r => {
+        //   r.json().then(r => {
+        //     console.log(r);
+        //   });
+        // });
+
+        // let response = await this.$auth.loginWith("local", {
+        //   mode: "no-cors",
+        //   headers: {
+        //     "Content-Type": "application/json"
+        //   },
+        //   data: this.login
+        // });
+        console.log(response);
+      } catch (err) {
+        console.log(err);
+      }
     },
     onReset(event) {
       event.preventDefault();
