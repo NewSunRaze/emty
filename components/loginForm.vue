@@ -23,8 +23,11 @@
       </b-form-group>
 
       <div class="btn_cont">
-        <b-button @click.prevent="onSubmit" variant="dark" class="but"
+        <b-button @click.prevent="localAuth" variant="dark" class="but"
           >Sign in</b-button
+        >
+        <b-button @click.prevent="fetchAuth" variant="dark" class="but"
+          >testbtn</b-button
         >
         <nuxt-link to="/auth/signup">or Sign Up</nuxt-link>
       </div>
@@ -38,27 +41,24 @@ export default {
     return {
       login: {
         username: "",
-        password: ""
-      }
+        password: "",
+      },
     };
   },
   methods: {
-    async onSubmit() {
-      console.log(this.login);
+    async localAuth() {
       try {
-        const rez = await fetch("http://5.63.157.3/login", {
-          mode: "no-cors",
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json"
-          }
-          // body: {
-          //   login: "test",
-          //   password: "pass"
-          // }
+        let response = await this.$auth.loginWith("local", {
+          data: {
+            login: "test_user",
+            password: "easy_password123",
+          },
         });
-        const response = await rez.text();
-        console.log(response);
+        if (response.data.isSuccees) {
+          this.$state;
+        } else {
+          console.log(" EROR ", response.data.errorText);
+        }
 
         // fetch("https://jsonplaceholder.typicode.com/posts?_limit=5", {
         //   method: "GET",
@@ -70,17 +70,26 @@ export default {
         //     console.log(r);
         //   });
         // });
-
-        // let response = await this.$auth.loginWith("local", {
-        //   mode: "no-cors",
-        //   headers: {
-        //     "Content-Type": "application/json"
-        //   },
-        //   data: this.login
-        // });
-        console.log(response);
       } catch (err) {
         console.log(err);
+      }
+    },
+    async fetchAuth() {
+      try {
+        const rez = await fetch("http://5.63.157.3/registration", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: {
+            username: "1",
+            password: "2",
+          },
+        });
+        const response = await rez.json();
+        console.log(response);
+      } catch (e) {
+        console.log(e);
       }
     },
     onReset(event) {
@@ -88,8 +97,9 @@ export default {
       this.form.email = "";
       this.form.name = "";
       this.form.checked = [];
-    }
-  }
+    },
+    onSubmit(event) {},
+  },
 };
 </script>
 <style scoped>
