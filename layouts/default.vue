@@ -1,5 +1,6 @@
 <template>
   <div>
+    <optionsModal></optionsModal>
     <appHeader></appHeader>
     <filters></filters>
     <Nuxt class="main" />
@@ -11,11 +12,13 @@
 import appHeader from "@/components/appHeader.vue";
 import filters from "../components/filters.vue";
 import appFooter from "../components/appFooter.vue";
+import optionsModal from "@/components/optionsModal.vue";
 export default {
   components: {
     appHeader,
     filters,
-    appFooter
+    appFooter,
+    optionsModal
   }
 };
 </script>

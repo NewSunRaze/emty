@@ -7,30 +7,69 @@
           <input type="text" placeholder="Title" />
         </div>
         <div class="input_wrapper">
-          <input type="text" placeholder="Amount in dollars" />
-          <div><img src="@/assets/common/non_paid.svg" alt="" /></div>
+          <input
+            type="number"
+            placeholder="Amount in dollars"
+            :disabled="non_paid"
+            v-model.number="cost"
+          />
+          <div>
+            <img
+              :src="
+                this.non_paid
+                  ? require('@/assets/common/non_paid_active.svg')
+                  : require('@/assets/common/non_paid.svg')
+              "
+              @click="non_paid = !non_paid"
+            />
+          </div>
         </div>
         <div class="input_wrapper">
           <input type="text" placeholder="Region" />
-          <div><img src="@/assets/common/navigation.svg" alt="" /></div>
+          <div>
+            <img
+              src="@/assets/common/navigation.svg"
+              alt=""
+              @click="getOptionsModal('region')"
+            />
+          </div>
         </div>
         <div class="input_wrapper">
           <input type="text" placeholder="Industry" />
-          <div><img src="@/assets/common/industry.svg" alt="" /></div>
+          <div>
+            <img
+              src="@/assets/common/industry.svg"
+              alt=""
+              @click="getOptionsModal('industry')"
+            />
+          </div>
         </div>
         <div class="add_files">
-          <div class="file-upload">
-            <input type="file" />
+          <div
+            class="file-upload"
+            @click="upload('pdf')"
+            :class="pdf ? 'uploaded' : ''"
+          >
+            <input type="file" ref="pdf" @change="changeHandler('pdf')" />
+            <div>pdf</div>
           </div>
-          <div class="file-upload">
-            <input type="file" />
-          </div>
-          <div class="file-upload">
-            <input type="file" />
+          <div
+            class="file-upload"
+            @click="upload('xlsx')"
+            :class="xlsx ? 'uploaded' : ''"
+          >
+            <input type="file" ref="xlsx" @change="changeHandler('xlsx')" />
+            <div>xlsx</div>
           </div>
         </div>
-        <textarea type="text" placeholder="Type description" />
-        <button>+ Add new project</button>
+        <b-form-textarea
+          id="textarea"
+          v-model="description"
+          placeholder="Type description"
+          rows="3"
+          max-rows="6"
+        ></b-form-textarea>
+        <button @click="test()">+ Add new project</button>
       </div>
     </div>
   </div>
@@ -41,7 +80,43 @@ import toggleInput from "../../components/toggleInput.vue";
 export default {
   components: { toggleInput },
   data() {
-    return {};
+    return {
+      pdf: "",
+      xlsx: "",
+      non_paid: false,
+      cost: "",
+      description: ""
+    };
+  },
+  methods: {
+    upload(type) {
+      if (type == "pdf") {
+        this.pdf == "" ? this.$refs.pdf.click() : (this.pdf = "");
+      } else if (type == "xlsx") {
+        this.xlsx ? (this.xlsx = "") : this.$refs.xlsx.click();
+      }
+    },
+    changeHandler(type) {
+      type == "pdf"
+        ? (this.pdf = this.$refs.pdf.files[0])
+        : (this.xlsx = this.$refs.xlsx.files[0]);
+    },
+    getOptionsModal(type) {
+      if (type == "region") {
+        this.$store.dispatch("modalsStore/callChengeOnRegions");
+      } else {
+        this.$store.dispatch("modalsStore/callChengeOnIndustry");
+      }
+      this.$store.dispatch("modalsStore/callChangeOptionsModalToggle");
+    },
+    test() {
+      console.log(this.pdf);
+    }
+  },
+  watch: {
+    non_paid() {
+      this.cost = "";
+    }
   }
 };
 </script>
@@ -63,26 +138,25 @@ export default {
 .add_files input {
   margin: 0;
 }
-
 .file-upload {
   cursor: pointer;
   display: block;
   position: relative;
-  overflow: hidden;
-  margin: 10px;
-  width: 40px;
-  height: 40px;
+  margin: 10px 20px;
+  width: 50px;
+  flex-direction: column;
+  background-position: top;
+  background: url("~assets/lists/addPdf.svg") no-repeat;
 }
-.file-upload:nth-child(1) {
-  background: url("~assets/lists/pdf.svg");
+.file-upload div {
+  text-align: center;
+  margin-top: 55px;
 }
-.file-upload:nth-child(2) {
-  background: url("~assets/lists/xlsx.svg");
-}
-.file-upload:nth-child(3) {
-  background: url("~assets/lists/com.svg");
+.uploaded {
+  background-image: url("~assets/lists/uploaded.svg") !important;
 }
 .file-upload input {
+  display: none;
   position: relative;
   width: 100%;
   height: 100%;
@@ -91,7 +165,8 @@ export default {
   opacity: 1;
   cursor: pointer;
 }
-textarea {
+#textarea {
+  outline: none;
   position: relative;
   width: 100%;
   height: 50px;
@@ -99,12 +174,14 @@ textarea {
   opacity: 1;
   cursor: pointer;
   border-radius: 5px;
-  outline: none;
   overflow: auto;
   resize: none;
   padding: 10px 15px;
   border: 1px solid #eed3e3;
   border-radius: 5px;
+}
+.form-control:focus {
+  box-shadow: none;
 }
 textarea::placeholder {
   color: #eed3e3;

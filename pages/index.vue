@@ -9,9 +9,7 @@
   </div>
 </template>
 <script>
-import loading from "../components/loading.vue";
 import OffersList from "../components/offersList.vue";
-import Posts from "../components/Posts.vue";
 import projectList from "../components/projectList.vue";
 export default {
   components: { projectList, OffersList },
@@ -19,9 +17,7 @@ export default {
   //   await store.dispatch("posts/fetchPosts");
   // },
   data() {
-    return {
-      loading: true
-    };
+    return {};
   },
   async mounted() {
     this.loading = true;
