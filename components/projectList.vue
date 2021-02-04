@@ -6,19 +6,18 @@
     <div
       class="post_container main_post"
       @click="openpost()"
-      v-for="i in 4"
-      :key="i"
+      v-for="post in invest_posts"
+      :key="post.label"
     >
       <div class="row_block">
         <div>
-          <h3 class="ta-left">Custom Marketplace</h3>
+          <h3 class="ta-left">{{ post.label }}</h3>
           <p class="ta-left">
-            <span>
-              <img src="@/assets/lists/map-pin.svg" alt="" /> </span
+            <span> <img src="@/assets/lists/map-pin.svg" alt="" /> </span
             >Saint-Petersburg
           </p>
         </div>
-        <h3 class="cost">70.000 $</h3>
+        <h3 class="cost">{{ post.money_amount }} $</h3>
       </div>
       <div class="row_block views_and_icons">
         <p class="ta-left">
@@ -37,15 +36,7 @@
         </p>
       </div>
       <div class="description">
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum nam neque
-          illo amet expedita possimus tempora, alias aliquid! Deserunt vero
-          doloremque ea sequi reiciendis itaque magni dolore soluta. Facilis
-          aperiam laboriosam provident error, a ullam accusantium obcaecati
-          numquam beatae eos est iste, dolorum eaque nam consequatur magnam
-          molestias adipisci. Voluptates, ab doloribus! Fugit harum provident
-          porro, quis unde repudiandae magnam!
-        </p>
+        <p>{{ post.description }}</p>
       </div>
     </div>
   </div>
@@ -53,10 +44,12 @@
 
 <script>
 export default {
+  async fetch() {
+    console.log(process.server);
+    await this.$store.dispatch("firstPage/firstPageStore/fetchInvestPosts");
+  },
   data() {
-    return {
-      test: false
-    };
+    return {};
   },
   methods: {
     goAdd() {
@@ -66,7 +59,13 @@ export default {
       this.$router.push("/posts/" + 1);
     }
   },
-  mounted() {
+  computed: {
+    invest_posts() {
+      return this.$store.getters["firstPage/firstPageStore/getInvestPosts"];
+    }
+  },
+  async mounted() {
+    console.log(this.invest_posts);
     const toggleMode = this.$store.getters[
       "firstPage/firstPage/changeToggleMode"
     ];

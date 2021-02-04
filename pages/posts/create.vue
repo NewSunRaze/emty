@@ -117,6 +117,11 @@ export default {
     non_paid() {
       this.cost = "";
     }
+  },
+  mounted() {
+    this.$root.$on("bv::modal::show", (bvEvent, modalId) => {
+      console.log("Modal is about to be shown", bvEvent, modalId);
+    });
   }
 };
 </script>

@@ -6,9 +6,9 @@ export default {
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { hid: "description", name: "description", content: "" },
+      { hid: "description", name: "description", content: "" }
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
@@ -17,7 +17,7 @@ export default {
   plugins: [],
   router: {
     linkActiveClass: "active-link",
-    linkExactActiveClass: "exact-active-link",
+    linkExactActiveClass: "exact-active-link"
   },
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -36,18 +36,21 @@ export default {
           login: {
             url: "http://localhost:8080/login",
             method: "POST",
-            propertyName: "token",
+            propertyName: "token"
           },
           user: {
             // get user data
             url: "http://5.63.157.3/login",
             method: "get",
-            propertyName: "data.user",
-          },
+            propertyName: "data.user"
+          }
         },
-        tokenType: "",
-      },
-    },
+        tokenType: ""
+      }
+    }
   },
-  build: {},
+  axios: {
+    baseURL: "http://5.63.157.3/"
+  },
+  build: {}
 };

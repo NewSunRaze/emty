@@ -17,7 +17,12 @@
 </template>
 
 <script>
-export default {};
+import appFooter from "../components/appFooter.vue";
+export default {
+  components: {
+    appFooter
+  }
+};
 </script>
 
 <style scoped>

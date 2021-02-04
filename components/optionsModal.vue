@@ -1,9 +1,9 @@
 <template>
   <div
+    id="modal-1"
     class="container-fluid"
     v-show="optionsModalToggle"
     @click.self="changeOptionsModalShowing"
-    @keyup.esc="changeOptionsModalShowing"
   >
     <transition name="slide-fade" mode="out-in">
       <div class="main_cont" v-show="optionsModalToggle">
@@ -39,7 +39,6 @@
       </div>
     </transition>
   </div>
-  <!-- </transition> -->
 </template>
 
 <script>
@@ -59,7 +58,8 @@ export default {
     regions() {
       return this.$store.getters["modalsStore/isRegion"];
     }
-  }
+  },
+  watch: {}
 };
 </script>
 
