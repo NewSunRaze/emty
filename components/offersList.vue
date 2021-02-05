@@ -50,7 +50,7 @@ export default {
     return {};
   },
   computed: {
-    invest_posts() {
+    team_posts() {
       return this.$store.getters["firstPage/firstPageStore/getTeamPosts"];
     }
   },
@@ -62,9 +62,7 @@ export default {
       this.$router.push("/posts/" + 1);
     }
   },
-  async mounted() {
-    this.$store.dispatch("firstPage/firstPageStore/fetchTeamPosts");
-  }
+  async mounted() {}
 };
 </script>
 <style scoped>
@@ -115,6 +113,7 @@ export default {
   font-size: 22px;
 }
 .main_post {
+  min-width: 70%;
   padding: 20px 20px;
 }
 .main_post h3 {

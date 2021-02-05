@@ -1,7 +1,8 @@
 export const state = () => ({
   invest_posts: [],
   team_posts: [],
-  toggleMode: false
+  toggleMode: false,
+  errors: ""
 });
 
 export const mutations = {
@@ -13,6 +14,9 @@ export const mutations = {
   },
   SET_TEAM_POSTS(state, data) {
     state.team_posts = data;
+  },
+  SET_ERRORS(state, data) {
+    state.errors = data;
   }
 };
 
@@ -39,5 +43,8 @@ export const getters = {
   },
   getTeamPosts(state) {
     return state.team_posts;
+  },
+  getErrors(state) {
+    return state.errors;
   }
 };

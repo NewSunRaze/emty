@@ -50,7 +50,7 @@ export default {
     }
   },
   axios: {
-    baseURL: "http://5.63.157.3/"
+    baseURL: "http://5.63.157.3:81/"
   },
   build: {}
 };

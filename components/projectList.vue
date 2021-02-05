@@ -46,6 +46,7 @@
 export default {
   async fetch() {
     console.log(process.server);
+    await this.$store.dispatch("firstPage/firstPageStore/fetchTeamPosts");
     await this.$store.dispatch("firstPage/firstPageStore/fetchInvestPosts");
   },
   data() {
@@ -118,6 +119,7 @@ export default {
   font-size: 22px;
 }
 .main_post {
+  min-width: 70%;
   padding: 20px 20px;
 }
 .main_post h3 {
