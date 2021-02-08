@@ -41,8 +41,8 @@ export default {
     return {
       login: {
         username: "",
-        password: "",
-      },
+        password: ""
+      }
     };
   },
   methods: {
@@ -51,14 +51,15 @@ export default {
         let response = await this.$auth.loginWith("local", {
           data: {
             login: "test_user",
-            password: "easy_password123",
-          },
+            password: "easy_password123"
+          }
         });
-        if (response.data.isSuccees) {
-          this.$state;
-        } else {
-          console.log(" EROR ", response.data.errorText);
-        }
+        console.log(response);
+        // if (response.data.isSuccees) {
+        //   this.$state;
+        // } else {
+        //   console.log(" EROR ", response.data.errorText);
+        // }
 
         // fetch("https://jsonplaceholder.typicode.com/posts?_limit=5", {
         //   method: "GET",
@@ -76,15 +77,15 @@ export default {
     },
     async fetchAuth() {
       try {
-        const rez = await fetch("http://5.63.157.3/registration", {
+        const rez = await fetch("http://5.63.157.3/auth/login", {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "application/json"
           },
-          body: {
-            username: "1",
-            password: "2",
-          },
+          body: JSON.stringify({
+            login: "test_user",
+            password: "easy_password123"
+          })
         });
         const response = await rez.json();
         console.log(response);
@@ -98,8 +99,8 @@ export default {
       this.form.name = "";
       this.form.checked = [];
     },
-    onSubmit(event) {},
-  },
+    onSubmit(event) {}
+  }
 };
 </script>
 <style scoped>

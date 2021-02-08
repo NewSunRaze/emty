@@ -34,12 +34,11 @@ export default {
       local: {
         endpoints: {
           login: {
-            url: "http://localhost:8080/login",
+            url: "auth/login",
             method: "POST",
             propertyName: "token"
           },
           user: {
-            // get user data
             url: "http://5.63.157.3/login",
             method: "get",
             propertyName: "data.user"
@@ -50,7 +49,7 @@ export default {
     }
   },
   axios: {
-    baseURL: "http://5.63.157.3:81/"
+    baseURL: "http://5.63.157.3/"
   },
   build: {}
 };

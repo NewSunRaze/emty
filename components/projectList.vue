@@ -70,11 +70,6 @@ export default {
     const toggleMode = this.$store.getters[
       "firstPage/firstPage/changeToggleMode"
     ];
-    if (toggleMode === "invest") {
-      this.test = false;
-    } else if (toggleMode === "team") {
-      this.test = true;
-    }
   }
 };
 </script>
