@@ -5,7 +5,7 @@
     </div>
     <div
       class="post_container main_post"
-      @click="openpost()"
+      @click="openpost(post)"
       v-for="post in invest_posts"
       :key="post.label"
     >
@@ -44,11 +44,6 @@
 
 <script>
 export default {
-  async fetch() {
-    console.log(process.server);
-    await this.$store.dispatch("firstPage/firstPageStore/fetchTeamPosts");
-    await this.$store.dispatch("firstPage/firstPageStore/fetchInvestPosts");
-  },
   data() {
     return {};
   },
@@ -56,8 +51,9 @@ export default {
     goAdd() {
       this.$router.push("/posts/create");
     },
-    openpost() {
-      this.$router.push("/posts/" + 1);
+    openpost(post) {
+      console.log(post);
+      this.$router.push("/posts/" + post.label);
     }
   },
   computed: {
@@ -136,8 +132,12 @@ export default {
   align-items: flex-end;
   font-size: 12px;
 }
-.description {
+.description p {
   text-align: left;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .views_and_icons .row_block img {
   margin-right: 10px;

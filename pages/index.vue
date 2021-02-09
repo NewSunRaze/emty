@@ -13,9 +13,11 @@ import OffersList from "../components/offersList.vue";
 import projectList from "../components/projectList.vue";
 export default {
   components: { projectList, OffersList },
-  // async fetch({ store }) {
-  //   await store.dispatch("posts/fetchPosts");
-  // },
+
+  async fetch() {
+    await this.$store.dispatch("firstPage/firstPageStore/fetchTeamPosts");
+    await this.$store.dispatch("firstPage/firstPageStore/fetchInvestPosts");
+  },
   data() {
     return {};
   },
@@ -27,7 +29,7 @@ export default {
   },
   computed: {
     invOrTeam() {
-      return this.$store.getters["firstPage/firstPageStore/changeToggleMode"];
+      return this.$store.getters["firstPage/firstPageStore/getToggleMode"];
     }
   }
 };

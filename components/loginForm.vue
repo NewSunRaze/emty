@@ -76,22 +76,17 @@ export default {
       }
     },
     async fetchAuth() {
-      try {
-        const rez = await fetch("http://5.63.157.3/auth/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            login: "test_user",
-            password: "easy_password123"
-          })
+      const token = "90656baeb0ddfb9f09833abe5d581799ff429098";
+      // const rez = await this.$axios.$get("main_invest");
+      // console.log(rez.response);
+
+      fetch("http://5.63.157.3/main_invest", {
+        methods: "GET"
+      }).then(r => {
+        r.json().then(r => {
+          console.log(r.response);
         });
-        const response = await rez.json();
-        console.log(response);
-      } catch (e) {
-        console.log(e);
-      }
+      });
     },
     onReset(event) {
       event.preventDefault();

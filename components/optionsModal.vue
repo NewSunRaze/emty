@@ -56,7 +56,7 @@ export default {
       return this.$store.getters["modalsStore/optionsModalToggle"];
     },
     regions() {
-      console.log(this.$store.getters["modalsStore/isRegion"]);
+      return this.$store.getters["modalsStore/isRegion"];
     }
   },
   watch: {}

@@ -7,7 +7,7 @@
           <div class="row">
             <div class="userName_logo">Y</div>
             <p class="userName">
-              UserName · 1h · <spnan class="gold">Autor</spnan>
+              UserName · 1h · <span class="gold">Autor</span>
             </p>
           </div>
           <div>
@@ -20,7 +20,13 @@
       </div>
     </div>
     <div class="input_container">
-      <textarea type="text" placeholder="Type message"></textarea>
+      <b-form-textarea
+        id="textarea"
+        v-model="description"
+        placeholder="Type message"
+        rows="1"
+        max-rows="1"
+      ></b-form-textarea>
       <button @click.prevent="send()">
         <img src="@/assets/common/send.svg" alt="" />
       </button>
@@ -56,7 +62,7 @@ export default {
   border-radius: 5px;
   overflow: hidden;
 }
-.input_container textarea {
+#textarea {
   position: relative;
   width: 80%;
   height: 35px;

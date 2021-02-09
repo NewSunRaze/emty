@@ -4,13 +4,13 @@
       <div class="post_container main_post">
         <div class="row_block">
           <div>
-            <h3 class="ta-left">Custom Marketplace</h3>
+            <h3 class="ta-left">123{{ post.label }}</h3>
             <p class="ta-left">
               <span> <img src="@/assets/lists/map-pin.svg" alt="" /> </span
               >Saint-Petersburg
             </p>
           </div>
-          <h3 class="cost">70.000 $</h3>
+          <h3 class="cost">{{ data.money_amount }} $</h3>
         </div>
         <div class="row_block views_and_icons">
           <p class="ta-left">
@@ -29,15 +29,7 @@
           </p>
         </div>
         <div class="description">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum nam
-            neque illo amet expedita possimus tempora, alias aliquid! Deserunt
-            vero doloremque ea sequi reiciendis itaque magni dolore soluta.
-            Facilis aperiam laboriosam provident error, a ullam accusantium
-            obcaecati numquam beatae eos est iste, dolorum eaque nam consequatur
-            magnam molestias adipisci. Voluptates, ab doloribus! Fugit harum
-            provident porro, quis unde repudiandae magnam!
-          </p>
+          <p>{{ data.description }}</p>
         </div>
         <hr />
         <div class="coments center">
@@ -51,11 +43,20 @@
 <script>
 import comments from "@/components/comments.vue";
 export default {
+  async fetch() {},
   data() {
-    return {};
+    return {
+      data: []
+    };
   },
-  methods: {},
-  mounted() {}
+  computed: {
+    async post() {
+      return await this.$store.getters[
+        "firstPage/firstPageStore/getOneInvestPost"
+      ];
+    }
+  },
+  methods: {}
 };
 </script>
 

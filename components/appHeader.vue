@@ -11,10 +11,8 @@
           >int.</b-navbar-brand
         >
 
-        <toggle-input
-          class="col-6 col-sm-5 col-xl-3 col-lg-3"
-          bg="black"
-        ></toggle-input>
+        <toggle-input class="col-6 col-sm-5 col-xl-3 col-lg-3"></toggle-input>
+
         <b-navbar-toggle
           target="nav-collapse"
           variant="dark"

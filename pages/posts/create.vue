@@ -1,7 +1,14 @@
 <template>
   <div class="container center">
     <div class="create_post_container">
-      <toggle-input bg="black" />
+      <div class="container">
+        <div class="toggle">
+          <input type="checkbox" v-model="invOrTeam" />
+          <span class="toggle_btn"></span>
+          <span class="labels"></span>
+          <span class="bg"></span>
+        </div>
+      </div>
       <div class="inputs_container">
         <div class="input_wrapper">
           <input type="text" placeholder="Title" />
@@ -76,11 +83,10 @@
 </template>
 
 <script>
-import toggleInput from "../../components/toggleInput.vue";
 export default {
-  components: { toggleInput },
   data() {
     return {
+      invOrTeam: false,
       pdf: "",
       xlsx: "",
       non_paid: false,
@@ -117,11 +123,6 @@ export default {
     non_paid() {
       this.cost = "";
     }
-  },
-  mounted() {
-    this.$root.$on("bv::modal::show", (bvEvent, modalId) => {
-      console.log("Modal is about to be shown", bvEvent, modalId);
-    });
   }
 };
 </script>
@@ -242,5 +243,68 @@ button {
 }
 input::placeholder {
   color: #eed3e3;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+.toggle {
+  position: relative;
+  background: #eed3e3;
+  width: 200px;
+  height: 40px;
+  border-radius: 8px;
+  font-size: 18px;
+  color: white;
+}
+.toggle input {
+  opacity: 0;
+  cursor: pointer;
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  width: 100%;
+  height: 100%;
+}
+.toggle .toggle_btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: white;
+  border-radius: 8px;
+  transition: 0.4s all;
+  border: 3px solid #eed3e3;
+  box-sizing: border-box;
+}
+.toggle .labels:before {
+  content: "invest";
+  position: absolute;
+  transition: 0.4s all;
+  top: 7px;
+  left: 25px;
+  color: black;
+}
+
+.toggle .labels:after {
+  text-align: center;
+  vertical-align: middle !important;
+  content: "team";
+  position: absolute;
+  transition: 0.4s all;
+  top: 7px;
+  right: 30px;
+}
+.toggle input:checked ~ .labels:after {
+  color: black;
+}
+.toggle input:checked ~ .labels:before {
+  color: white;
+}
+.toggle input:checked ~ .toggle_btn {
+  left: 50%;
 }
 </style>

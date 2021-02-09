@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <div class="toggle" v-bind:style="{ background: bg }">
-      <input @click="changeMode()" v-model="mode" type="checkbox" />
+    <div class="toggle">
+      <input @click="changeMode()" @model="invOrTeam" type="checkbox" />
       <span class="toggle_btn"></span>
       <span class="labels"></span>
       <span class="bg"></span>
@@ -11,21 +11,21 @@
 
 <script>
 export default {
-  props: {
-    bg: String
-  },
   data() {
     return {};
   },
   methods: {
     changeMode() {
-      this.$store.dispatch("firstPage/firstPageStore/callChangeToggleMode");
+      this.$store.dispatch(
+        "firstPage/firstPageStore/callChangeToggleMode",
+        !this.invOrTeam
+      );
       this.$router.push("/");
     }
   },
   computed: {
-    mode() {
-      return this.$store.getters["firstPage/firstPageStore/changeToggleMode"];
+    invOrTeam() {
+      return this.$store.getters["firstPage/firstPageStore/getToggleMode"];
     }
   }
 };
@@ -43,6 +43,7 @@ export default {
   border-radius: 5px;
   font-size: 18px;
   color: white;
+  background: black;
 }
 .toggle input {
   opacity: 0;

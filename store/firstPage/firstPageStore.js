@@ -6,8 +6,11 @@ export const state = () => ({
 });
 
 export const mutations = {
-  changeToggleMode(state) {
-    state.toggleMode = !state.toggleMode;
+  ON_TOGGLE_MODE(state) {
+    state.toggleMode = true;
+  },
+  OFF_TOGGLE_MODE(state) {
+    state.toggleMode = false;
   },
   SET_INVEST_POSTS(state, data) {
     state.invest_posts = data;
@@ -29,13 +32,17 @@ export const actions = {
     const invest_posts = await this.$axios.$get("main_team");
     commit("SET_TEAM_POSTS", invest_posts.response);
   },
-  callChangeToggleMode({ commit }) {
-    commit("changeToggleMode");
+  callChangeToggleMode({ commit }, status) {
+    if (status === true) {
+      commit("ON_TOGGLE_MODE");
+    } else {
+      commit("OFF_TOGGLE_MODE");
+    }
   }
 };
 
 export const getters = {
-  changeToggleMode(state) {
+  getToggleMode(state) {
     return state.toggleMode;
   },
   getInvestPosts(state) {
