@@ -11,10 +11,10 @@
           <img src="@/assets/footer/visa.jpg" alt="" />
           <img src="@/assets/footer/bitCoin.jpg" alt="" />
         </div>
-        <div class="admin_mail">
+        <a class="admin_mail" href="mailto:test@mail.ru">
           <img src="@/assets/common/send_black.svg" alt="" />
           <span>admin@int.consulting</span>
-        </div>
+        </a>
       </div>
     </div>
   </div>
@@ -54,6 +54,7 @@ p {
   display: flex;
   flex-direction: row;
   align-items: center;
+  cursor: pointer;
 }
 .admin_mail img {
   padding-right: 5px;

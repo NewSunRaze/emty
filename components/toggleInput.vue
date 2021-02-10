@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="toggle">
-      <input @click="changeMode()" @model="invOrTeam" type="checkbox" />
+      <input @click="changeMode()" v-model="invOrTeam" type="checkbox" />
       <span class="toggle_btn"></span>
       <span class="labels"></span>
       <span class="bg"></span>
@@ -32,6 +32,11 @@ export default {
 </script>
 
 <style scoped>
+@media only screen and (max-width: 480px) {
+  .toggle {
+    font-size: 14px;
+  }
+}
 .container {
   display: flex;
   justify-content: center;

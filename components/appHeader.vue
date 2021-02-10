@@ -38,13 +38,20 @@
                 /></em>
               </template>
 
-              <b-dropdown-item to="/auth/login">Log In</b-dropdown-item>
-              <b-dropdown-item to="/auth/signup" class="golden"
-                >Sign Up</b-dropdown-item
-              >
-              <b-dropdown-item white href="/profile/1">Profile</b-dropdown-item>
-              <b-dropdown-item white href="#">Adds</b-dropdown-item>
-              <b-dropdown-item white href="#">Notifications</b-dropdown-item>
+              <div v-if="!this.$store.state.auth.loggedIn">
+                <b-dropdown-item to="/auth/login">Log In</b-dropdown-item>
+                <b-dropdown-item to="/auth/signup">Sign Up</b-dropdown-item>
+              </div>
+              <div v-else>
+                <b-dropdown-item to="/profile/1">Profile</b-dropdown-item>
+                <b-dropdown-item to="/profile/1/ads">Adds</b-dropdown-item>
+                <b-dropdown-item to="/profile/1/notification"
+                  >Notifications</b-dropdown-item
+                >
+                <b-dropdown-item @click="$auth.logout()" class="gold"
+                  >Log out</b-dropdown-item
+                >
+              </div>
             </b-nav-item-dropdown>
 
             <b-nav-item-dropdown right menu-class="my-dropdown">
@@ -61,6 +68,7 @@
               <b-dropdown-item to="/second">Second page</b-dropdown-item>
               <b-dropdown-item to="/auth/login">login</b-dropdown-item>
               <b-dropdown-item to="/auth/signup">Signup</b-dropdown-item>
+              <b-dropdown-item to="/profile/1/ads">Adds</b-dropdown-item>
             </b-nav-item-dropdown>
           </b-navbar-nav>
         </b-collapse>
@@ -81,8 +89,11 @@ export default {};
   border-radius: 7% 0% 7% 7%;
   overflow: hidden;
 }
-.golden {
+.gold a {
   color: #bb9532 !important;
+}
+.gold a:hover {
+  color: #61490e !important;
 }
 .dropdown-item {
   color: white !important;

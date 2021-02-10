@@ -5,7 +5,7 @@
       <b-form-group id="input-group-1" label="E-mail:" label-for="input-1">
         <b-form-input
           id="input-1"
-          v-model="login.username"
+          v-model="login.login"
           type="email"
           placeholder="mail@example.com"
           required
@@ -31,6 +31,7 @@
         >
         <nuxt-link to="/auth/signup">or Sign Up</nuxt-link>
       </div>
+      <p class="error">{{ error }}</p>
     </b-form>
   </div>
 </template>
@@ -40,53 +41,42 @@ export default {
   data() {
     return {
       login: {
-        username: "",
+        login: "",
         password: ""
-      }
+      },
+      error: ""
     };
   },
   methods: {
     async localAuth() {
       try {
-        let response = await this.$auth.loginWith("local", {
+        await this.$auth.loginWith("local", {
           data: {
-            login: "test_user",
-            password: "easy_password123"
+            login: this.login.login,
+            password: this.login.password
           }
         });
-        console.log(response);
-        // if (response.data.isSuccees) {
-        //   this.$state;
-        // } else {
-        //   console.log(" EROR ", response.data.errorText);
-        // }
-
-        // fetch("https://jsonplaceholder.typicode.com/posts?_limit=5", {
-        //   method: "GET",
-        //   headers: {
-        //     "Content-Type": "application/json"
-        //   }
-        // }).then(r => {
-        //   r.json().then(r => {
-        //     console.log(r);
-        //   });
-        // });
       } catch (err) {
+        this.error = "Incorrect login or password";
         console.log(err);
       }
     },
     async fetchAuth() {
-      const token = "90656baeb0ddfb9f09833abe5d581799ff429098";
-      // const rez = await this.$axios.$get("main_invest");
-      // console.log(rez.response);
+      try {
+        const token = "90656baeb0ddfb9f09833abe5d581799ff429098";
 
-      fetch("http://5.63.157.3/main_invest", {
-        methods: "GET"
-      }).then(r => {
-        r.json().then(r => {
-          console.log(r.response);
+        const rez = await fetch("http://5.63.157.3:81/get_profile", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token
+          }
         });
-      });
+        // var result = await rez.json();
+        console.log(rez);
+      } catch (e) {
+        console.log(e);
+      }
     },
     onReset(event) {
       event.preventDefault();
@@ -125,5 +115,9 @@ h1 {
 }
 a {
   color: #eed3e3;
+}
+.error {
+  margin-top: 15px;
+  color: red;
 }
 </style>

@@ -14,8 +14,8 @@
             </div>
           </div>
         </div>
-        <div class="center col-lg-1 col-md-4 col-sm-1 col-4">
-          <b-button variant="dark">Subscribe</b-button>
+        <div class="center col-lg-2 col-md-4 col-sm-1 col-4">
+          <button>Subscribe</button>
         </div>
       </div>
     </div>
@@ -57,5 +57,15 @@ export default {};
 }
 .my_btn {
   cursor: pointer;
+}
+button {
+  background: black;
+  color: white;
+  outline: none;
+  padding: 3px 15px;
+  border-radius: 5px;
+  font-size: 14px;
+  outline: none;
+  border: 1px solid black;
 }
 </style>

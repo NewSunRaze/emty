@@ -43,6 +43,7 @@
 <script>
 import comments from "@/components/comments.vue";
 export default {
+  middleware: "auth",
   async fetch() {},
   data() {
     return {
@@ -83,6 +84,7 @@ export default {
   margin-bottom: 20px;
 }
 .main_post {
+  min-width: 70%;
   padding: 20px 20px;
 }
 .main_post h3 {

@@ -30,26 +30,32 @@ export default {
   modules: ["@nuxtjs/axios", "bootstrap-vue/nuxt", "@nuxtjs/auth-next"],
 
   auth: {
+    redirect: {
+      login: "/auth/login",
+      logout: "/",
+      home: "/"
+    },
     strategies: {
       local: {
-        endpoints: {
-          login: {
-            url: "auth/login",
-            method: "POST",
-            propertyName: "token"
-          },
-          user: {
-            url: "http://5.63.157.3/login",
-            method: "get",
-            propertyName: "data.user"
-          }
+        token: {
+          property: "token",
+          // required: true,
+          type: "Bearer"
         },
-        tokenType: ""
+        user: {
+          property: ""
+        },
+        endpoints: {
+          login: { url: "/auth/login", method: "post" },
+          logout: { url: "/profile/logout", method: "post" },
+          user: { url: "/get_profile", method: "get" }
+        }
       }
     }
   },
   axios: {
     baseURL: "http://5.63.157.3/"
   },
+  router: {},
   build: {}
 };

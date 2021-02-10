@@ -12,23 +12,27 @@
       </div>
       <div class="inputs_container">
         <div>
-          <p>Your name</p>
-          <input type="text" />
+          <p>Your first name</p>
+          <input type="text" v-model="first_name" />
+        </div>
+        <div>
+          <p>Your last name</p>
+          <input type="text" v-model="last_name" />
         </div>
         <div>
           <p>Your mail</p>
-          <input type="text" />
+          <input type="text" v-model="email" />
         </div>
         <div>
           <p>Your password</p>
-          <input type="password" />
+          <input type="password" v-model="password" />
         </div>
       </div>
       <div class="btn_cont">
-        <button>Save changes</button>
+        <button @click="send()">Save changes</button>
       </div>
       <div class="signout">
-        <p>Sign out</p>
+        <p @click="$auth.logout()">Sign out</p>
       </div>
       <hr />
     </div>
@@ -38,18 +42,46 @@
 <script>
 export default {
   layout: "profile",
+  middleware: "auth",
   data() {
     return {
+      first_name: this.$store.state.auth.user.first_name,
+      last_name: this.$store.state.auth.user.last_name,
+      email: this.$store.state.auth.user.email,
+      password: "*************",
       file: []
     };
   },
   methods: {
+    async logout() {
+      try {
+        const response = await this.$auth.logout();
+      } catch (e) {
+        console.log(e);
+      }
+    },
     onFileChange() {
       const files = this.$refs.image.files;
       const data = new FormData();
       data.append("logo", files[0]);
       this.file = data;
-      console.log(this.file);
+    },
+    async send() {
+      try {
+        const response = await this.$axios.$post("change_profile", {
+          data: {
+            first_name: this.first_name,
+            last_name: this.last_name,
+            email: this.email,
+            password: this.password,
+            file: this.file
+          }
+        });
+        console.log(response);
+      } catch (e) {
+        console.log(e);
+      }
+      console.log(this.first_name, this.last_name, this.email, this.file);
     }
   }
 };
@@ -71,6 +103,7 @@ export default {
 
 .signout {
   margin-top: 35px;
+  cursor: pointer;
 }
 .signout p {
   text-align: center;

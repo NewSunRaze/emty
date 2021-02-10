@@ -40,7 +40,7 @@ body {
 .btn .button button {
   outline-style: none !important;
 }
-.exact-active-link {
+.nuxt-link-exact-active {
   color: #eed3e3;
 }
 .exact-active-link:hover {

@@ -27,7 +27,7 @@
     </div>
     <div class="subscribes">
       <div>
-        <h4>Subscribes</h4>
+        <h4><span>Subscribes</span></h4>
         <div class="row">
           <div class="text_wraper">
             <h5>Invest</h5>
@@ -61,7 +61,8 @@
 
 <script>
 export default {
-  layout: "profile"
+  layout: "profile",
+  middleware: "auth"
 };
 </script>
 
@@ -144,6 +145,12 @@ button {
 h4 {
   margin: 30px 0;
   font-weight: bold;
+}
+h4 span {
+  color: white;
+  background: black;
+  padding: 3px;
+  border-radius: 5px;
 }
 .settings,
 .subscribes {
