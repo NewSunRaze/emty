@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="toggle">
-      <input @click="changeMode()" v-model="invOrTeam" type="checkbox" />
+      <input @click="changeMode()" :value="invOrTeam" type="checkbox" />
       <span class="toggle_btn"></span>
       <span class="labels"></span>
       <span class="bg"></span>

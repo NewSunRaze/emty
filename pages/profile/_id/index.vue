@@ -77,11 +77,9 @@ export default {
             file: this.file
           }
         });
-        console.log(response);
       } catch (e) {
         console.log(e);
       }
-      console.log(this.first_name, this.last_name, this.email, this.file);
     }
   }
 };

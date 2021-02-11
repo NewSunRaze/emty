@@ -5,9 +5,9 @@
     </div>
     <div
       class="post_container main_post"
-      @click="openpost()"
+      @click="openpost(post)"
       v-for="post in team_posts"
-      :key="post.label"
+      :key="post.item_id"
     >
       <div class="row_block">
         <div>
@@ -58,8 +58,11 @@ export default {
     goAdd() {
       this.$router.push("/posts/create");
     },
-    openpost() {
-      this.$router.push("/posts/" + 1);
+    openpost(post) {
+      this.$router.push({
+        path: `/posts/${post.item_id}`,
+        query: { postType: "Team" }
+      });
     }
   },
   async mounted() {}

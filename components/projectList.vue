@@ -7,7 +7,7 @@
       class="post_container main_post"
       @click="openpost(post)"
       v-for="post in invest_posts"
-      :key="post.label"
+      :key="post.item_id"
     >
       <div class="row_block">
         <div>
@@ -52,8 +52,10 @@ export default {
       this.$router.push("/posts/create");
     },
     openpost(post) {
-      console.log(post);
-      this.$router.push("/posts/" + post.label);
+      this.$router.push({
+        path: `/posts/${post.item_id}`,
+        query: { postType: "Invest" }
+      });
     }
   },
   computed: {
@@ -62,7 +64,6 @@ export default {
     }
   },
   async mounted() {
-    console.log(this.invest_posts);
     const toggleMode = this.$store.getters[
       "firstPage/firstPage/changeToggleMode"
     ];

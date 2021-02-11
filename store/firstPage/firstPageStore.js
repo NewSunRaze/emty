@@ -2,6 +2,7 @@ export const state = () => ({
   invest_posts: [],
   team_posts: [],
   toggleMode: false,
+  current_post: [],
   errors: ""
 });
 
@@ -18,6 +19,9 @@ export const mutations = {
   SET_TEAM_POSTS(state, data) {
     state.team_posts = data;
   },
+  SET_CURRENT_POST(state, data) {
+    state.current_post = data;
+  },
   SET_ERRORS(state, data) {
     state.errors = data;
   }
@@ -31,6 +35,18 @@ export const actions = {
   async fetchTeamPosts({ commit }) {
     const invest_posts = await this.$axios.$get("main_team");
     commit("SET_TEAM_POSTS", invest_posts.response);
+  },
+  async fetchOneInvestPost({ commit }, post_id) {
+    const current_post = await this.$axios.$post("invest_item", {
+      id: post_id
+    });
+    commit("SET_CURRENT_POST", current_post);
+  },
+  async fetchOneTeamPost({ commit }, post_id) {
+    const current_post = await this.$axios.$post("team_item", {
+      id: post_id
+    });
+    commit("SET_CURRENT_POST", current_post);
   },
   callChangeToggleMode({ commit }, status) {
     if (status === true) {
@@ -50,6 +66,9 @@ export const getters = {
   },
   getTeamPosts(state) {
     return state.team_posts;
+  },
+  getCurrentPost(state) {
+    return state.current_post;
   },
   getErrors(state) {
     return state.errors;

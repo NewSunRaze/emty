@@ -15,11 +15,6 @@ export const mutations = {
 };
 
 export const actions = {
-  // async fetchPosts({ commit }) {
-  //   const posts = await this.$axios.$get(
-  //     "https://jsonplaceholder.typicode.com/posts?_limit=5"
-  //   );
-  //  }
   callChangeOptionsModalToggle({ commit }) {
     commit("changeOptionsModalToggle");
   },

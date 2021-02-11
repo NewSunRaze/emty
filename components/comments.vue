@@ -22,7 +22,6 @@
     <div class="input_container">
       <b-form-textarea
         id="textarea"
-        v-model="description"
         placeholder="Type message"
         rows="1"
         max-rows="1"

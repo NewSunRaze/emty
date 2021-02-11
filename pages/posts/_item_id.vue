@@ -4,13 +4,13 @@
       <div class="post_container main_post">
         <div class="row_block">
           <div>
-            <h3 class="ta-left">123{{ post.label }}</h3>
+            <h3 class="ta-left">{{ post.label }}</h3>
             <p class="ta-left">
               <span> <img src="@/assets/lists/map-pin.svg" alt="" /> </span
               >Saint-Petersburg
             </p>
           </div>
-          <h3 class="cost">{{ data.money_amount }} $</h3>
+          <h3 class="cost">{{ post.money_amount }} $</h3>
         </div>
         <div class="row_block views_and_icons">
           <p class="ta-left">
@@ -29,7 +29,7 @@
           </p>
         </div>
         <div class="description">
-          <p>{{ data.description }}</p>
+          <p>{{ post.description }}</p>
         </div>
         <hr />
         <div class="coments center">
@@ -43,21 +43,21 @@
 <script>
 import comments from "@/components/comments.vue";
 export default {
+  async fetch({ store, route }) {
+    await store.dispatch(
+      `firstPage/firstPageStore/fetchOne${route.query.postType}Post`,
+      route.params.item_id
+    );
+  },
   middleware: "auth",
-  async fetch() {},
   data() {
-    return {
-      data: []
-    };
+    return {};
   },
   computed: {
-    async post() {
-      return await this.$store.getters[
-        "firstPage/firstPageStore/getOneInvestPost"
-      ];
+    post() {
+      return this.$store.getters["firstPage/firstPageStore/getCurrentPost"];
     }
-  },
-  methods: {}
+  }
 };
 </script>
 
