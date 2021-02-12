@@ -53,6 +53,9 @@ export default {
       }
     }
   },
+  server: {
+    port: 8080
+  },
   axios: {
     baseURL: "http://5.63.157.3/"
   },
