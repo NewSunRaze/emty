@@ -74,10 +74,10 @@ export default {
 <style scoped>
 @media only screen and (max-width: 960px) {
   .post_container {
-    max-width: 95% !important;
+    max-width: 100% !important;
   }
   .add_post {
-    width: 95% !important;
+    width: 100% !important;
   }
 }
 .ta-left {

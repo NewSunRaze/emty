@@ -153,22 +153,13 @@ export default {
 <style scoped>
 @media only screen and (max-width: 960px) {
   .after_content {
-    width: 50%;
-    order: 1;
   }
   .before_content {
-    width: 50%;
-    order: 2;
   }
   .main_post {
-    width: 100%;
-    order: 3;
   }
   .post_container {
     max-width: 95% !important;
-  }
-  .add_post {
-    width: 95% !important;
   }
 }
 .ta-left {
@@ -282,7 +273,6 @@ p {
   justify-content: center;
   align-items: center;
 }
-
 .navigation div {
   position: relative;
 }

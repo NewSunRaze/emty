@@ -1,7 +1,5 @@
 <template>
   <div class="container" v-cloak>
-    <!-- <loading v-bind:show="loading" v-if="loading" />  -->
-
     <transition name="slide-fade" mode="out-in">
       <offers-list v-if="invOrTeam" />
       <project-list v-else />

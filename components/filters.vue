@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class="container">
-      <div class="row">
+      <div class="box">
         <div class="col-lg-4 col-md-8 col-sm-6 col-8 my-m-auto">
           <div class="box">
             <div class="col-lg-6 offset-lg-0">
