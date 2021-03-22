@@ -1,4 +1,4 @@
-FROM node:8.11.4
+FROM node:14.15.4
 
 RUN mkdir -p /root/app
 COPY . /root/app
