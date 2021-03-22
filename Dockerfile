@@ -9,7 +9,7 @@ COPY package*.json /root/app
 
 RUN npm install
 
-ENV NODE_ENV=production
+ENV NODE_ENV
 
 COPY . /root/app
 RUN npm run build
