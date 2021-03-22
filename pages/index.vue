@@ -33,7 +33,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style>
 .slide-fade-enter-active {
   transition: all 0.15s cubic-bezier(1, 0.5, 0.8, 1);
 }
@@ -60,13 +60,4 @@ body {
 a {
   color: black;
 }
-// a:link {
-//   color: none; /* Цвет ссылок */
-// }
-// a:hover {
-//   color: #bb9532;
-//   text-shadow: 1px 1px 1px #bb9532;
-//   color: none; /* Цвет ссылки */
-//   text-decoration: none;
-// }
 </style>
