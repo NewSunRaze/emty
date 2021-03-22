@@ -49,34 +49,25 @@ export default {
   },
   methods: {
     async localAuth() {
-      try {
-        await this.$auth.loginWith("local", {
-          data: {
-            login: this.login.login,
-            password: this.login.password
-          }
-        });
-      } catch (err) {
-        this.error = "Incorrect login or password";
-        console.log(err);
-      }
+      await this.$auth.loginWith("local", {
+        data: {
+          login: this.login.login,
+          password: this.login.password
+        }
+      });
     },
     async fetchAuth() {
-      try {
-        const token = "90656baeb0ddfb9f09833abe5d581799ff429098";
+      const token = "90656baeb0ddfb9f09833abe5d581799ff429098";
 
-        const rez = await fetch("http://5.63.157.3:81/get_profile", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + token
-          }
-        });
-        // var result = await rez.json();
-        console.log(rez);
-      } catch (e) {
-        console.log(e);
-      }
+      const rez = await fetch("http://5.63.157.3:81/get_profile", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token
+        }
+      });
+      // var result = await rez.json();
+      console.log(rez);
     },
     onReset(event) {
       event.preventDefault();

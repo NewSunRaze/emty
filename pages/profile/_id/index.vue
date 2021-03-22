@@ -54,11 +54,7 @@ export default {
   },
   methods: {
     async logout() {
-      try {
-        const response = await this.$auth.logout();
-      } catch (e) {
-        console.log(e);
-      }
+      const response = await this.$auth.logout();
     },
     onFileChange() {
       const files = this.$refs.image.files;
@@ -67,19 +63,15 @@ export default {
       this.file = data;
     },
     async send() {
-      try {
-        const response = await this.$axios.$post("change_profile", {
-          data: {
-            first_name: this.first_name,
-            last_name: this.last_name,
-            email: this.email,
-            password: this.password,
-            file: this.file
-          }
-        });
-      } catch (e) {
-        console.log(e);
-      }
+      const response = await this.$axios.$post("change_profile", {
+        data: {
+          first_name: this.first_name,
+          last_name: this.last_name,
+          email: this.email,
+          password: this.password,
+          file: this.file
+        }
+      });
     }
   }
 };
