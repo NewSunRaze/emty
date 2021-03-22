@@ -1,0 +1,94 @@
+@font-face {
+  font-family: "Inter";
+  font-style: black;
+  font-weight: 900;
+  font-display: swap;
+  src: url("~~static/fonts/Inter-Black.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: bold;
+  font-weight: 700;
+  font-display: swap;
+  src: url("~~static/fonts/Inter-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: "light";
+  font-weight: 200;
+  font-display: swap;
+  src: url("~~static/fonts/Inter-Light.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("~~static/fonts/Inter-Regular.ttf") format("truetype");
+}
+
+html,
+body {
+  font-family: "Inter";
+  font-size: 14px;
+}
+[v-cloak] {
+  display: none;
+}
+.center {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+.btn .button button {
+  outline-style: none !important;
+}
+.nuxt-link-exact-active {
+  color: #eed3e3;
+}
+.exact-active-link:hover {
+  color: #eed3e3;
+}
+a {
+  color: black;
+  text-decoration: none;
+}
+a:hover {
+  color: #bb9532;
+}
+a:active {
+  color: black;
+}
+#__layout {
+  position: relative;
+  min-height: 100vh;
+}
+::-webkit-scrollbar-button {
+  background-repeat: no-repeat;
+  width: 5px;
+  height: 0px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #ecedee;
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 5px;
+  border-radius: 50px;
+  background-color: black;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(44, 44, 44);
+}
+
+::-webkit-resizer {
+  background-repeat: no-repeat;
+  width: 4px;
+  height: 0px;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
