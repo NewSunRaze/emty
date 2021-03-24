@@ -1,5 +1,6 @@
 <template>
   <div>
+    <mobileModal></mobileModal>
     <appHeader></appHeader>
     <Nuxt class="main" />
     <appFooter></appFooter>
@@ -7,10 +8,12 @@
 </template>
 
 <script>
+import mobileModal from "@/components/mobileModal.vue";
 import appHeader from "@/components/appHeader.vue";
 import appFooter from "../components/appFooter.vue";
 export default {
   components: {
+    mobileModal,
     appHeader,
     appFooter
   }

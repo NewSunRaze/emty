@@ -55,7 +55,7 @@ export default {
   height: 100vh;
   background: rgba(255, 255, 255, 0.96);
   box-shadow: 0px 0px 50px rgba(26, 30, 38, 0.1);
-  z-index: 99;
+  z-index: 999;
 }
 .cont div {
   margin-top: 10vh;

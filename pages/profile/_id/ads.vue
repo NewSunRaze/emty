@@ -19,13 +19,14 @@
         >
       </div>
     </div>
+
     <transition name="slide-fade" mode="out-in">
-      <div class="active_content center" v-if="status == 'active'" key="active">
-        <div class="before_content">
+      <div class="active_content" v-if="status == 'active'" key="active">
+        <div class="before_content col-6 col-md-2">
           <h3>23:59</h3>
           <img src="@/assets/common/swap.svg" alt="" />
         </div>
-        <div class="post_container main_post">
+        <div class="post_container col-12 col-md-8">
           <div class="row_block">
             <div>
               <h3 class="ta-left">label</h3>
@@ -56,20 +57,21 @@
             <p>description</p>
           </div>
         </div>
-        <div class="after_content">
+        <div class="after_content col-6 col-md-1">
           <img src="@/assets/common/trash.svg" alt="" />
         </div>
       </div>
+
       <div
-        class="archive_content center"
+        class="archive_content"
         v-else-if="status == 'archive'"
         key="archive"
       >
-        <div class="before_content">
+        <div class="before_content  col-12 col-md-2">
           <h3>14 days</h3>
           <img src="@/assets/common/swap.svg" alt="" />
         </div>
-        <div class="post_container main_post">
+        <div class="post_container col-12 col-md-10">
           <div class="row_block">
             <div>
               <h3 class="ta-left">label</h3>
@@ -101,8 +103,8 @@
           </div>
         </div>
       </div>
-      <div class="comments_content center" v-else key="comments">
-        <div class="post_container main_post">
+      <div class="comments_content" v-else key="comments">
+        <div class="post_container col-12">
           <div class="row_block">
             <div>
               <h3 class="ta-left">label</h3>
@@ -153,22 +155,52 @@ export default {
 <style scoped>
 @media only screen and (max-width: 960px) {
   .after_content {
+    order: 3;
+    margin: 0 !important;
+    justify-content: flex-end;
   }
   .before_content {
+    order: 2;
+    margin: 0 !important;
   }
-  .main_post {
+  .post_container {
+    order: 1;
+  }
+  .archive_content {
+    justify-content: flex-start !important;
   }
   .post_container {
     max-width: 95% !important;
   }
+  .active_content,
+  .archive_content,
+  .comments_content {
+    justify-content: center !important;
+  }
 }
-.ta-left {
-  text-align: left;
+
+.after_content {
+  display: flex;
+  cursor: pointer;
 }
-.component_container {
-  flex-direction: column;
-  margin-top: 50px;
+.before_content {
+  cursor: pointer;
+  display: flex;
 }
+.active_content,
+.archive_content,
+.comments_content {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.comments_content {
+  justify-content: center;
+}
+
 .post_container {
   cursor: pointer;
   position: relative;
@@ -178,16 +210,21 @@ export default {
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   margin-bottom: 20px;
+  min-width: 70%;
+  padding: 20px 20px;
 }
 .post_container:hover {
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
 }
-.main_post {
-  order: 2;
-  min-width: 70%;
-  padding: 20px 20px;
+
+.ta-left {
+  text-align: left;
 }
-.main_post h3 {
+.component_container {
+  flex-direction: column;
+  margin-top: 50px;
+}
+.post_container h3 {
   font-size: 18px;
 }
 .row_block {
@@ -239,27 +276,6 @@ p {
 .before_content h3 {
   margin-bottom: 0;
   padding-right: 5px;
-}
-.after_content {
-  order: 3;
-  cursor: pointer;
-}
-.before_content {
-  order: 1;
-  cursor: pointer;
-  display: flex;
-  margin-right: 20px;
-}
-.after_content {
-  margin-left: 20px;
-}
-.active_content,
-.archive_content,
-.comments_content {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-top: 30px;
 }
 .container {
   display: flex;
