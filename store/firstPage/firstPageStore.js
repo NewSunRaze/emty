@@ -1,4 +1,5 @@
 export const state = () => ({
+  mobileModal: false,
   invest_posts: [],
   team_posts: [],
   toggleMode: false,
@@ -7,11 +8,11 @@ export const state = () => ({
 });
 
 export const mutations = {
-  ON_TOGGLE_MODE(state) {
-    state.toggleMode = true;
+  CANGE_MOBILE_MODAL(state) {
+    state.mobileModal = !state.mobileModal;
   },
-  OFF_TOGGLE_MODE(state) {
-    state.toggleMode = false;
+  CHANGE_TOGGLE_MODE(state) {
+    state.toggleMode = !state.toggleMode;
   },
   SET_INVEST_POSTS(state, data) {
     state.invest_posts = data;
@@ -28,6 +29,9 @@ export const mutations = {
 };
 
 export const actions = {
+  callChangeMobileModal({ commit }) {
+    commit("CANGE_MOBILE_MODAL");
+  },
   async fetchInvestPosts({ commit }) {
     const invest_posts = await this.$axios.$get("main_invest");
     commit("SET_INVEST_POSTS", invest_posts.response);
@@ -48,16 +52,15 @@ export const actions = {
     });
     commit("SET_CURRENT_POST", current_post);
   },
-  callChangeToggleMode({ commit }, status) {
-    if (status === true) {
-      commit("ON_TOGGLE_MODE");
-    } else {
-      commit("OFF_TOGGLE_MODE");
-    }
+  callChangeToggleMode({ commit }) {
+    commit("CHANGE_TOGGLE_MODE");
   }
 };
 
 export const getters = {
+  getMobileModal(state) {
+    return state.mobileModal;
+  },
   getToggleMode(state) {
     return state.toggleMode;
   },

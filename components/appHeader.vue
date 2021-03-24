@@ -5,7 +5,7 @@
         ><h1 class="logo">int.</h1></nuxt-link
       >
       <toggle-input class="col-lg-2 toggle"></toggle-input>
-      <div class="mobile_nav col-1">
+      <div class="mobile_nav col-1" @click="changeMobileModalShowing">
         <img src="@/assets/common/chevron_left.svg" alt="" />
       </div>
       <div class="main_nav offset-lg-8 col-lg-1">
@@ -63,6 +63,11 @@ export default {
     return {
       showMenu: false
     };
+  },
+  methods: {
+    changeMobileModalShowing() {
+      this.$store.dispatch("firstPage/firstPageStore/callChangeMobileModal");
+    }
   }
 };
 </script>
@@ -71,7 +76,7 @@ export default {
   .logo {
     text-align: center;
     order: 1;
-    padding-left: 55px;
+    padding-left: 20px;
   }
   .main_nav {
     display: none !important;

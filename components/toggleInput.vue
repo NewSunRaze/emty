@@ -14,10 +14,7 @@ export default {
   },
   methods: {
     changeMode() {
-      this.$store.dispatch(
-        "firstPage/firstPageStore/callChangeToggleMode",
-        !this.invOrTeam
-      );
+      this.$store.dispatch("firstPage/firstPageStore/callChangeToggleMode");
       this.$router.push("/");
     }
   },

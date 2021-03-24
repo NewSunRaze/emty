@@ -79,6 +79,9 @@ export default {
   .add_post {
     width: 100% !important;
   }
+  .main_post {
+    width: 100% !important;
+  }
 }
 .ta-left {
   text-align: left;

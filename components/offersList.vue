@@ -76,6 +76,9 @@ export default {
   .add_post {
     width: 95% !important;
   }
+  .main_post {
+    width: 100% !important;
+  }
 }
 @media only screen and (max-width: 540px) {
   .views_and_icons p {
