@@ -27,13 +27,27 @@
           <p>Saint-Petersburg, Russia</p>
           <p>Saint-Petersburg, Russia</p>
         </div>
-        <div class="popular_cont">
-          <h4 v-show="regions">Popular</h4>
+        <div v-show="regions" class="popular_cont">
+          <h4>Popular</h4>
           <div>
             <span>Saint-Petersburg</span>
             <span>Paris</span>
             <span>Amsterdam</span>
             <span>New-York</span>
+            <span>Industry</span>
+          </div>
+        </div>
+        <div v-show="!regions" class="popular_cont">
+          <div>
+            <span style="width:100%">IT</span>
+            <span>HoReCa</span>
+            <span>Services</span>
+            <span>Government</span>
+            <span style="width:100%">Energetics</span>
+            <span>Development</span>
+            <span>Med</span>
+            <span>Media</span>
+            <span style="width:100%">Other</span>
           </div>
         </div>
       </div>
@@ -112,7 +126,26 @@ export default {
   margin-bottom: 10px;
 }
 .popular_cont div {
-  max-width: 280px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 350px;
+}
+
+.popular_cont div span:nth-child(1) {
+  grid-area: 1;
+}
+.popular_cont div span:nth-child(2) {
+  grid-area: 2 / 1;
+}
+.popular_cont div span:nth-child(3) {
+  grid-area: 1 / 1 / span 2 / span 2;
+}
+.popular_cont div span:nth-child(4) {
+  grid-area: 1 / 1 / span 2 / span 2;
+}
+.popular_cont div span:nth-child(5) {
+  grid-area: 1 / 1 / span 2 / span 2;
 }
 .input_wrapper input {
   width: 100%;
@@ -144,8 +177,8 @@ export default {
   border-radius: 5px;
   font-size: 16px;
   margin-bottom: 10px;
-  margin-right: 10px;
   outline: none;
+  text-align: center;
   border: 1px solid black;
   cursor: pointer;
 }

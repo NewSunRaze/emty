@@ -2,10 +2,14 @@
   <div class="container-fluid">
     <div class="row">
       <div class="container">
-        <span class="my_btn">Region: <span class="bold">Russia</span></span>
-        <span class="my_btn">Industry: <span class="bold">IT</span></span>
+        <span @click="getOptionsModal('region')" class="my_btn"
+          >Region: <span class="bold">Russia</span></span
+        >
+        <span @click="getOptionsModal('industry')" class="my_btn"
+          >Industry: <span class="bold">IT</span></span
+        >
         <div class="btn_cont">
-          <button>Subscribe</button>
+          <b-button @click="toast" class="mb-2">Subscribe</b-button>
         </div>
       </div>
     </div>
@@ -13,16 +17,43 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {};
+  },
+  methods: {
+    toast() {
+      this.$bvToast.toast(`Log in to continue`, {
+        title: `Warn!`,
+        toaster: "b-toaster-top-right",
+        solid: true,
+        variant: "danger",
+        appendToast: false
+      });
+    },
+    getOptionsModal(type) {
+      if (type == "region") {
+        this.$store.dispatch("modalsStore/callChengeOnRegions");
+      } else {
+        this.$store.dispatch("modalsStore/callChengeOnIndustry");
+      }
+      this.$store.dispatch("modalsStore/callChangeOptionsModalToggle");
+    }
+  }
+};
 </script>
 <style scoped>
 @media only screen and (max-width: 480px) {
   .my_btn {
-    padding-right: 10px !important;
+    padding-right: 0px !important;
   }
   .container-fluid {
     margin-top: 20px;
     border-top: none !important;
+  }
+  .container {
+    display: flex;
+    justify-content: space-around !important;
   }
 }
 .container-fluid {
@@ -40,14 +71,16 @@ export default {};
 .btn_cont {
   display: inline;
 }
-button {
+button,
+.btn,
+.btn-secondary {
   background: black;
   color: white;
   outline: none;
   padding: 1px;
   border-radius: 5px;
   font-size: 14px;
-  outline: none;
+  outline: none !important;
   border: 1px solid black;
 }
 .bold {
