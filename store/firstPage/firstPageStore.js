@@ -1,5 +1,5 @@
 export const state = () => ({
-  mobileModal: false,
+  informModal: false,
   invest_posts: [],
   team_posts: [],
   toggleMode: false,

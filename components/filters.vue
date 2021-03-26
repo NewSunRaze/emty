@@ -23,10 +23,9 @@ export default {
   },
   methods: {
     toast() {
-      this.$bvToast.toast(`Log in to continue`, {
+      this.$bvToast.toast(`Log in to subscribe`, {
         title: `Warn!`,
         toaster: "b-toaster-top-right",
-        solid: true,
         variant: "danger",
         appendToast: false
       });

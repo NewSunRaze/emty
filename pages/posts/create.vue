@@ -117,7 +117,13 @@ export default {
       this.$store.dispatch("modalsStore/callChangeOptionsModalToggle");
     },
     test() {
-      console.log(this.pdf);
+      const params = {
+        decription:
+          "Whrite the number of the won tender in the title and in description offer to the investor",
+        firstBtn: "",
+        secondBtn: `Ok, dont show it again`
+      };
+      this.$store.dispatch("modalsStore/callChangeInformModal", params);
     }
   },
   watch: {
