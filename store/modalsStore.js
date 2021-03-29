@@ -15,8 +15,7 @@ export const state = () => ({
 
 export const mutations = {
   CANGE_INFORM_MODAL(state, params) {
-    state.informModal.show = !state.informModal.show;
-    state.informModal.params = params;
+    state.informModal = params;
   },
   changeOptionsModalToggle(state) {
     state.optionsModalToggle = !state.optionsModalToggle;

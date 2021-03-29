@@ -12,11 +12,6 @@
         <h3>{{ modalParams.params.decription }}</h3>
         <div class="row">
           <span v-show="modalParams.params.firstBtn">6,99$</span>
-          <span
-            v-show="modalParams.params.firstBtn"
-            @click="callChangeInformModal"
-            >{{ modalParams.params.firstBtn }}</span
-          >
           <button class="but" @click="next()">
             {{ modalParams.params.secondBtn }}
           </button>
@@ -33,15 +28,26 @@ export default {
   },
   methods: {
     callChangeInformModal() {
-      this.$store.dispatch("modalsStore/callChangeInformModal", {});
+      var informModal = {
+        show: false,
+        params: {}
+      };
+      this.$store.dispatch("modalsStore/callChangeInformModal", informModal);
     },
     next() {
-      const params = {
-        decription: "Ads in this category are paid",
-        firstBtn: true,
-        secondBtn: `Pay now`
-      };
-      this.$store.dispatch("modalsStore/callChangeInformModal", params);
+      if (this.modalParams.params.firstBtn) {
+        document.location.href = "https://google.com";
+      } else {
+        var informModal = {
+          show: true,
+          params: {
+            decription: "Ads in this category are paid",
+            firstBtn: true,
+            secondBtn: `Pay now`
+          }
+        };
+        this.$store.dispatch("modalsStore/callChangeInformModal", informModal);
+      }
     }
   },
   computed: {

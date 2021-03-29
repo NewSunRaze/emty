@@ -92,7 +92,8 @@ export default {
       xlsx: "",
       non_paid: false,
       cost: "",
-      description: ""
+      description: "",
+      showAgain: true
     };
   },
   methods: {
@@ -117,13 +118,28 @@ export default {
       this.$store.dispatch("modalsStore/callChangeOptionsModalToggle");
     },
     test() {
-      const params = {
-        decription:
-          "Whrite the number of the won tender in the title and in description offer to the investor",
-        firstBtn: "",
-        secondBtn: `Ok, dont show it again`
-      };
-      this.$store.dispatch("modalsStore/callChangeInformModal", params);
+      if (this.showAgain) {
+        var informModal = {
+          show: true,
+          params: {
+            decription:
+              "Whrite the number of the won tender in the title and in description offer to the investor",
+            firstBtn: false,
+            secondBtn: "Ok, don`t show again"
+          }
+        };
+      } else {
+        var informModal = {
+          show: true,
+          params: {
+            decription: "Ads in this category are paid",
+            firstBtn: true,
+            secondBtn: `Pay now`
+          }
+        };
+      }
+
+      this.$store.dispatch("modalsStore/callChangeInformModal", informModal);
     }
   },
   watch: {
