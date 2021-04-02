@@ -31,6 +31,7 @@ html,
 body {
   font-family: "Inter";
   font-size: 14px;
+  color: #1a1e26;
 }
 [v-cloak] {
   display: none;
@@ -50,14 +51,14 @@ body {
   color: #eed3e3;
 }
 a {
-  color: black;
+  color: #1a1e26;
   text-decoration: none;
 }
 a:hover {
   color: #bb9532;
 }
 a:active {
-  color: black;
+  color: #1a1e26;
 }
 #__layout {
   position: relative;
@@ -76,7 +77,7 @@ a:active {
 ::-webkit-scrollbar-thumb {
   -webkit-border-radius: 5px;
   border-radius: 50px;
-  background-color: black;
+  background-color: #1a1e26;
 }
 
 ::-webkit-scrollbar-thumb:hover {

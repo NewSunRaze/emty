@@ -20,7 +20,7 @@
         <h3 class="cost">{{ post.money_amount }} $</h3>
       </div>
       <div class="row_block views_and_icons">
-        <p class="ta-left">
+        <p class="ta-left gold">
           <span>
             <img src="@/assets/lists/check-circle.svg" alt="" />
           </span>
@@ -90,6 +90,9 @@ export default {
   flex-direction: column;
   margin-top: 50px;
 }
+.gold {
+  color: #bb9532;
+}
 .post_container {
   cursor: pointer;
   position: relative;
@@ -124,7 +127,7 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 15px 0;
+  margin-bottom: 10px;
 }
 .row_block p img {
   padding-right: 3px;

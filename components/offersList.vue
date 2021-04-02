@@ -129,7 +129,7 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 15px 0;
+  margin-bottom: 10px;
 }
 .row_block p img {
   padding-right: 3px;
