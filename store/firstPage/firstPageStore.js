@@ -8,9 +8,6 @@ export const state = () => ({
 });
 
 export const mutations = {
-  CANGE_MOBILE_MODAL(state) {
-    state.mobileModal = !state.mobileModal;
-  },
   CHANGE_TOGGLE_MODE(state) {
     state.toggleMode = !state.toggleMode;
   },
@@ -29,9 +26,6 @@ export const mutations = {
 };
 
 export const actions = {
-  callChangeMobileModal({ commit }) {
-    commit("CANGE_MOBILE_MODAL");
-  },
   async fetchInvestPosts({ commit }) {
     const invest_posts = await this.$axios.$get("main_invest");
     commit("SET_INVEST_POSTS", invest_posts.response);
@@ -58,9 +52,6 @@ export const actions = {
 };
 
 export const getters = {
-  getMobileModal(state) {
-    return state.mobileModal;
-  },
   getToggleMode(state) {
     return state.toggleMode;
   },

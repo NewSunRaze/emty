@@ -32,7 +32,7 @@ export default {
   },
   computed: {
     mobileModal() {
-      return this.$store.getters["firstPage/firstPageStore/getMobileModal"];
+      return this.$store.getters["modalsStore/getMobileModal"];
     }
   }
 };

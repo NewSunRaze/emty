@@ -66,7 +66,7 @@ export default {
   },
   methods: {
     changeMobileModalShowing() {
-      this.$store.dispatch("firstPage/firstPageStore/callChangeMobileModal");
+      this.$store.dispatch("modalsStore/callChangeMobileModal");
     }
   }
 };

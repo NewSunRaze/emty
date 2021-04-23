@@ -14,6 +14,9 @@ export const state = () => ({
 });
 
 export const mutations = {
+  CANGE_MOBILE_MODAL(state) {
+    state.mobileModal = !state.mobileModal;
+  },
   CANGE_INFORM_MODAL(state, params) {
     state.informModal = params;
   },
@@ -27,6 +30,9 @@ export const mutations = {
 };
 
 export const actions = {
+  callChangeMobileModal({ commit }) {
+    commit("CANGE_MOBILE_MODAL");
+  },
   callChangeInformModal({ commit }, params) {
     commit("CANGE_INFORM_MODAL", params);
   },
@@ -42,6 +48,9 @@ export const actions = {
 };
 
 export const getters = {
+  getMobileModal(state) {
+    return state.mobileModal;
+  },
   getInformModal(state) {
     return state.informModal;
   },

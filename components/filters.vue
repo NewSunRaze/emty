@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class="row">
-      <div class="container">
+      <div class="container test">
         <span @click="getOptionsModal('region')" class="my_btn"
           >Region: <span class="bold">Russia</span></span
         >
@@ -70,6 +70,10 @@ export default {
 .btn_cont {
   display: inline;
 }
+.container{
+  display: flex;
+  align-items: center;
+}
 button,
 .btn,
 .btn-secondary {
@@ -81,6 +85,7 @@ button,
   font-size: 14px;
   outline: none !important;
   border: 1px solid black;
+  margin: 0 !important;
 }
 .bold {
   font-weight: bold;
