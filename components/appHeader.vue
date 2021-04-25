@@ -5,7 +5,7 @@
         ><h1 class="logo">int.</h1></nuxt-link
       >
       <toggle-input class="col-lg-2 col-md-3 offset-md-1 offset-lg-0 toggle"></toggle-input>
-      <div class="mobile_nav col-1" @click="changeMobileModalShowing">
+      <div class="mobile_nav col-1" v-b-toggle.sidebar-1>
         <img src="@/assets/common/chevron_left.svg" alt="" />
       </div>
       <div class="main_nav offset-lg-8 col-md-1 offset-md-6 col-1">
