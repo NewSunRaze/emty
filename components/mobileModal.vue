@@ -1,5 +1,6 @@
 <template>
-    <b-sidebar id="sidebar-1" title="Sidebar" left shadow width="250px" body-class="modal_main">
+    <b-sidebar id="sidebar-1" left shadow width="250px" body-class="test">
+      <div class="px-3 py-2 col">
         <div v-if="!this.$store.state.auth.loggedIn">
           <nuxt-link to="/auth/login">Log In</nuxt-link>
           <nuxt-link to="/auth/signup">Sign Up</nuxt-link>
@@ -10,17 +11,16 @@
           <nuxt-link to="/profile/1/notification">Notification</nuxt-link>
         </div>
 
-        <div><btn class="but">Donat</btn></div>
 
-        <div class="">
+        <button class="but">Donat</button>
+        <div>
+          <p>© int.2020</p>
           <a class="admin_mail" href="mailto:test@mail.ru">
             <img src="@/assets/common/send_black.svg" alt="" />
             <span>admin@int.consulting</span>
           </a>
-          <div class="copyright">
-            <p>© int.2020</p>
-          </div>
         </div>
+      </div>
     </b-sidebar>
 </template>
 
@@ -40,29 +40,13 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  justify-content: center !important;
-}
-.modal_main{
-  display: flex;
-  justify-content: center !important;
-}
-.modal_main div {
-  margin-top: 10vh;
-  width: 100%;
+.test{
   display: flex;
   justify-content: center;
-  align-items: space-between;
-  flex-direction: column;
-  font-size: 18px;
-}
-
-.modal_main div a {
-  text-align: center;
-  margin-bottom: 45px;
 }
 .but {
   background: black;
+  width: 150px;
   padding: 3px;
   color: white;
   border-radius: 5px;
@@ -70,8 +54,5 @@ export default {
   font-weight: 900;
   font-size: 36px;
   margin-bottom: 18vh;
-}
-p {
-  text-align: center;
 }
 </style>

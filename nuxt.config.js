@@ -48,7 +48,7 @@ export default {
         endpoints: {
           login: { url: "/auth/login", method: "post" },
           logout: { url: "/profile/logout", method: "post" },
-          user: { url: "/get_profile", method: "get" }
+          user: { url: "/user/get_profile", method: "get" }
         }
       }
     }
@@ -57,7 +57,10 @@ export default {
     port: 8080
   },
   axios: {
-    baseURL: "http://5.63.157.3/"
+    baseURL: "http://194.135.92.74:8080/invest-api/",
+    common: {
+      'Accept': 'application/json'
+    }
   },
   router: {},
   build: {}

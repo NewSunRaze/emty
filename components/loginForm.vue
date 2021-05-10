@@ -51,23 +51,17 @@ export default {
     async localAuth() {
       await this.$auth.loginWith("local", {
         data: {
-          login: this.login.login,
-          password: this.login.password
+          'email': this.login.login,
+          'password': this.login.password
         }
       });
     },
     async fetchAuth() {
-      const token = "90656baeb0ddfb9f09833abe5d581799ff429098";
-
-      const rez = await fetch("http://5.63.157.3:81/get_profile", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + token
-        }
-      });
-      // var result = await rez.json();
-      console.log(rez);
+        const rezult = await this.$axios.$post("auth/login",{
+          "email": "test123@mail.ru",
+          "password": "test1q"
+        })
+      console.log(rezult);
     },
     onReset(event) {
       event.preventDefault();

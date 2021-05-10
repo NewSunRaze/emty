@@ -53,7 +53,7 @@ export default {
     },
     openpost(post) {
       this.$router.push({
-        path: `/posts/${post.item_id}`,
+        path: `/posts/${post.id}`,
         query: { postType: "Invest" }
       });
     }

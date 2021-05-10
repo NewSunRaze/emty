@@ -40,7 +40,7 @@
         >
           <b-form-input
             id="input-3"
-            v-model="form.email"
+            v-model="form.password"
             type="password"
             placeholder="Enter password"
             required
@@ -85,8 +85,7 @@ export default {
       form: {
         email: "",
         name: "",
-        food: null,
-        checked: []
+        password: ""
       },
       foods: [
         { text: "Select One", value: null },
@@ -99,8 +98,27 @@ export default {
     };
   },
   methods: {
-    onSubmit(event) {
-      this.$router.push("/");
+    async onSubmit(event) {
+      try{
+        this.$axios.$post('/auth/registration',{
+          "email": this.form.email,
+          "login": this.form.name,
+          "password": this.form.password
+        }).then(responce =>{
+          this.$auth.loginWith("local", {
+            data: {
+              'email': this.form.email,
+              'password': this.form.password
+            }
+      });
+        })
+        console.log(result)
+
+        this.$router.push("/");
+      }
+      catch(e){
+        console.log(e)
+      }
     },
     onReset(event) {
       event.preventDefault();

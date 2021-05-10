@@ -27,28 +27,30 @@ export const mutations = {
 
 export const actions = {
   async fetchInvestPosts({ commit }) {
-    const invest_posts = await this.$axios.$get("main_invest");
-    commit("SET_INVEST_POSTS", invest_posts.response);
+    const invest_posts = await this.$axios.$get("projects/invest_item");
+    commit("SET_INVEST_POSTS", invest_posts);
   },
   async fetchTeamPosts({ commit }) {
-    const invest_posts = await this.$axios.$get("main_team");
-    commit("SET_TEAM_POSTS", invest_posts.response);
+    const team_posts = await this.$axios.$get("projects/team_item");
+    commit("SET_TEAM_POSTS", team_posts);
   },
-  async fetchOneInvestPost({ commit }, post_id) {
-    const current_post = await this.$axios.$post("invest_item", {
-      id: post_id
-    });
-    commit("SET_CURRENT_POST", current_post);
-  },
-  async fetchOneTeamPost({ commit }, post_id) {
-    const current_post = await this.$axios.$post("team_item", {
-      id: post_id
-    });
-    commit("SET_CURRENT_POST", current_post);
-  },
+  // async fetchOneInvestPost({ commit }, post_id) {
+  //   const current_post = await this.$axios.$post("invest_item", {
+  //     id: post_id
+  //   });
+  //   commit("SET_CURRENT_POST", current_post);
+  // },
+//   async fetchOneTeamPost({ commit }, post_id) {
+//     const current_post = await this.$axios.$post(`team_item/${post_id}`);
+//     commit("SET_CURRENT_POST", current_post);
+//   },
   callChangeToggleMode({ commit }) {
     commit("CHANGE_TOGGLE_MODE");
-  }
+  },
+  async fetchCurrentPost({ commit }, post_id) {
+    const current_post = await this.$axios.$get(`projects/${post_id}`);
+    commit("SET_CURRENT_POST", current_post);
+  },
 };
 
 export const getters = {

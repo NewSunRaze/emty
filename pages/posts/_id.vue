@@ -41,12 +41,11 @@
 </template>
 
 <script>
-import comments from "@/components/comments.vue";
 export default {
   async fetch({ store, route }) {
     await store.dispatch(
-      `firstPage/firstPageStore/fetchOne${route.query.postType}Post`,
-      route.params.item_id
+      `firstPage/firstPageStore/fetchCurrentPost`,
+      route.params.id
     );
   },
   middleware: "auth",

@@ -3,7 +3,7 @@
     <div class="create_post_container">
       <div class="container">
         <div class="toggle">
-          <input type="checkbox" v-model="invOrTeam" />
+          <input type="checkbox" v-model="project_type" />
           <span class="toggle_btn"></span>
           <span class="labels"></span>
           <span class="bg"></span>
@@ -11,14 +11,14 @@
       </div>
       <div class="inputs_container">
         <div class="input_wrapper">
-          <input type="text" placeholder="Title" />
+          <input type="text" placeholder="Title" v-model="label" />
         </div>
         <div class="input_wrapper">
           <input
             type="number"
             placeholder="Amount in dollars"
             :disabled="non_paid"
-            v-model.number="cost"
+            v-model.number="money_amount"
           />
           <div>
             <img
@@ -76,7 +76,7 @@
           rows="3"
           max-rows="6"
         ></b-form-textarea>
-        <button @click="test()">+ Add new project</button>
+        <button @click="createPost()">+ Add new project</button>
       </div>
     </div>
   </div>
@@ -87,12 +87,13 @@ export default {
   middleware: "auth",
   data() {
     return {
-      invOrTeam: false,
+      description: "",
+      project_type: false,
+      label:"",
+      money_amount:"",
       pdf: "",
       xlsx: "",
       non_paid: false,
-      cost: "",
-      description: "",
       showAgain: true
     };
   },
@@ -100,7 +101,8 @@ export default {
     upload(type) {
       if (type == "pdf") {
         this.pdf == "" ? this.$refs.pdf.click() : (this.pdf = "");
-      } else if (type == "xlsx") {
+      }
+      if (type == "xlsx") {
         this.xlsx ? (this.xlsx = "") : this.$refs.xlsx.click();
       }
     },
@@ -117,7 +119,7 @@ export default {
       }
       this.$store.dispatch("modalsStore/callChangeOptionsModalToggle");
     },
-    test() {
+    create() {
       if (this.showAgain) {
         var informModal = {
           show: true,
@@ -138,13 +140,35 @@ export default {
           }
         };
       }
-
-      this.$store.dispatch("modalsStore/callChangeInformModal", informModal);
+    },
+    async createPost(){
+      try{
+        const rezult = await this.$axios.$post("projects",{
+            "description": this.description,
+            "industry": "test",
+            "pdf_file": this.pdf,
+            "xlsx_file": this.xlsx,
+            "label": this.label,
+            "money_amount": this.money_amount,
+            "project_type": this.computed_project_type,
+            "region": "test"
+        })
+        console.log(rezult.id)
+        this.$router.push(`/posts/${rezult.id}`);
+      }
+      catch(e){
+        console.log(e)
+      }
+    }
+  },
+  computed:{
+    computed_project_type: function(){
+      return this.project_type ? 'TEAM' : 'INVEST'
     }
   },
   watch: {
     non_paid() {
-      this.cost = "";
+      this.money_amount = "";
     }
   }
 };

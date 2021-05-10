@@ -1,21 +1,22 @@
 <template>
   <div>
     <div class="container">
-      <h3>Comments (3)</h3>
+      <h3>Comments ({{this.allComments.length}})</h3>
       <div class="posts_container">
-        <div class="post" v-for="post in 3" :key="post">
+        <div class="post" v-for="comment in allComments" :key="comment.id">
           <div class="row">
             <div class="userName_logo">Y</div>
             <p class="userName">
-              UserName · 1h · <span class="gold">Autor</span>
+              {{comment.author.login}} · {{comment.created_at}} · <span class="gold">{{ (comment.author.id === currentPost.user.id) ? 'author' : '' }}</span>
             </p>
           </div>
           <div>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic,
-              ratione.
+              {{comment.text}}
             </p>
           </div>
+          <div class="btn_container">
+            <button @click="reply(comment.id)">123</button></div>
         </div>
       </div>
     </div>
@@ -25,8 +26,12 @@
         placeholder="Type message"
         rows="1"
         max-rows="1"
+        v-model="commentText"
       ></b-form-textarea>
       <button @click.prevent="send()">
+        <img src="@/assets/common/send.svg" alt="" />
+      </button>
+      <button @click.prevent="test()">123
         <img src="@/assets/common/send.svg" alt="" />
       </button>
     </div>
@@ -35,13 +40,32 @@
 
 <script>
 export default {
+  async fetch(){
+    this.currentPost = this.$store.getters["firstPage/firstPageStore/getCurrentPost"]
+    this.allComments = await this.$axios.$get(`/projects/${this.currentPost.id}/comments`)
+  },
   data() {
-    return {};
+    return {
+      currentPost: "",
+      allComments: "",
+      commentText: ""
+    };
   },
   methods: {
-    send() {
-      alert(123);
-    }
+    async send() {
+      try{
+        const rezult = await this.$axios.$post(`/projects/${this.currentPost.id}/comments`,{
+          "parent_comment_id": "string",
+          "text": this.commentText
+        })
+      }
+      catch(e){
+        console.log(e)
+      }
+    },
+    async test() {
+      console.log(this.allComments)
+    },
   }
 };
 </script>
@@ -60,6 +84,10 @@ export default {
   background: black;
   border-radius: 5px;
   overflow: hidden;
+}
+.btn_container{
+  display: none;
+  justify-content: flex-end;
 }
 #textarea {
   position: relative;
@@ -88,9 +116,15 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  transition: all 1s !important;
 }
 .post {
   margin-bottom: 20px;
+  transition: all 1s !important;
+}
+
+.post:hover .btn_container{
+  display: flex;
 }
 .post .row {
   align-items: top;
