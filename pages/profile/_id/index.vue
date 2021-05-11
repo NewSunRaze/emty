@@ -63,15 +63,34 @@ export default {
       this.file = data;
     },
     async send() {
-      const response = await this.$axios.$post("change_profile", {
-        data: {
-          first_name: this.first_name,
-          last_name: this.last_name,
-          email: this.email,
-          password: this.password,
-          file: this.file
-        }
-      });
+      if(this.first_name,this.last_name,this.email == false){
+        console.table(this.first_name,this.last_name,this.email)
+        return
+      }
+      try{
+        this.$axios.$post("user/change_profile", {
+            first_name: this.first_name,
+            last_name: this.last_name,
+            email: this.email,
+            password: this.password,
+            file: this.file
+        }).then(r=>{
+          this.$bvToast.toast(`Done!`, {
+            title: 'The site message',
+            variant: 'success',
+            autoHideDelay: 1000,
+            appendToast: false
+          })
+        });
+      }
+      catch(e){
+          this.$bvToast.toast(`We have an error: ${e}`, {
+            title: 'Ops...',
+            variant: 'danger',
+            autoHideDelay: 2000,
+            appendToast: false
+          })
+      }
     }
   }
 };

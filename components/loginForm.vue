@@ -49,12 +49,22 @@ export default {
   },
   methods: {
     async localAuth() {
-      await this.$auth.loginWith("local", {
-        data: {
-          'email': this.login.login,
-          'password': this.login.password
-        }
-      });
+      try{
+        await this.$auth.loginWith("local", {
+          data: {
+            'email': this.login.login,
+            'password': this.login.password
+          }
+        });
+      }
+      catch(e){
+          this.$bvToast.toast(`We have an error: ${e}`, {
+            title: 'Ops...',
+            variant: 'danger',
+            autoHideDelay: 5000,
+            appendToast: false
+          })
+      }
     },
     async fetchAuth() {
         const rezult = await this.$axios.$post("auth/login",{

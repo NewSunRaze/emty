@@ -53,18 +53,32 @@ export default {
   },
   methods: {
     async send() {
+      if(this.commentText == false){
+        this.$bvToast.toast(`I can\'t save an empty comment`, {
+          title: 'Warn',
+          variant: 'danger',
+          autoHideDelay: 5000,
+          appendToast: false
+        })
+        return
+      }
       try{
-        const rezult = await this.$axios.$post(`/projects/${this.currentPost.id}/comments`,{
+          const rezult = await this.$axios.$post(`/projects/${this.currentPost.id}/comments`,{
+            "parent_comment_id": "string",
+            "text": this.commentText
+          })
+          console.log(rezult)
+        }
+        catch(e){
+          console.log(e)
+        }
+    },
+    async test() {
+      const rezult = await this.$axios.$post(`/projects/${this.currentPost.id}/comments`,{
           "parent_comment_id": "string",
           "text": this.commentText
         })
-      }
-      catch(e){
-        console.log(e)
-      }
-    },
-    async test() {
-      console.log(this.allComments)
+        console.log(rezult)
     },
   }
 };
