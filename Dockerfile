@@ -5,7 +5,7 @@ COPY . /root/app
 
 WORKDIR /root/app
 
-COPY package*.json /root/app
+COPY package*.json /root/app/
 
 RUN npm install
 
