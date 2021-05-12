@@ -7,8 +7,8 @@ build:
     - npm install --progress=false
     - npm run build
 
-run:
-  stage: run
+deploy:
+  stage: deploy
   only:
     - development
   script:
