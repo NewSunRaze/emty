@@ -7,9 +7,9 @@ build:
     - npm install --progress=false
     - npm run build
 
-deploy:
-  stage: deploy
+run:
+  stage: run
   only:
     - development
   script:
-    - docker build --no-cache -t $PROJECT_NAME . && docker stop $PROJECT_NAME || true && docker rm $PROJECT_NAME || true && docker run -d -p 3000:3000 --restart=always --name $PROJECT_NAME $PROJECT_NAME"
+    - docker build --no-cache -t $PROJECT_NAME . && docker stop $PROJECT_NAME || true && docker rm $PROJECT_NAME || true && docker run -d -p 3000:3000 --restart=always --name $PROJECT_NAME $PROJECT_NAME
