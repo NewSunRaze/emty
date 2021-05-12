@@ -54,7 +54,7 @@ export default {
     }
   },
   server: {
-    port: 8080
+    port: 8082
   },
   axios: {
     baseURL: "http://194.135.92.74:8080/invest-api/",

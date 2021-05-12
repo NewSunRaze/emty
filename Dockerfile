@@ -15,6 +15,6 @@ COPY . /root/app
 RUN npm run build
 
 ENV HOST 0.0.0.0
-EXPOSE 3000
+EXPOSE 8082
 
 CMD ["npm", "start"]
