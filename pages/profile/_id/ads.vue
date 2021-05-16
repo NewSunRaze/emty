@@ -21,118 +21,134 @@
     </div>
 
     <transition name="slide-fade" mode="out-in">
-      <div class="active_content" v-if="status == 'active'" key="active">
-        <div class="before_content col-6 col-md-2">
-          <h3>23:59</h3>
-          <img src="@/assets/common/swap.svg" alt="" />
-        </div>
-        <div class="post_container col-12 col-md-8">
-          <div class="row_block">
-            <div>
-              <h3 class="ta-left">label</h3>
+
+<!-- active -->
+
+      <div v-if="status == 'active'" key="active">
+        <div class="postWrapper" v-for="post in myPosts" :key="post.id">
+          <div class="before_content col-6 col-md-2">
+            <h3>{{ Date()  | moment("from", post.created_at) }}</h3>
+            <img src="@/assets/common/swap.svg" alt="" />
+          </div>
+          <div class="post_container col-12 col-md-8" @click="goToPost(post)">
+            <div class="row_block">
+              <div>
+                <h3 class="ta-left">{{post.label}}</h3>
+                <p class="ta-left">
+                  <span> <img src="@/assets/lists/map-pin.svg" alt="" /> </span
+                  >Saint-Petersburg
+                </p>
+              </div>
+              <h3 class="cost">{{post.money_amount}}$</h3>
+            </div>
+            <div class="row_block views_and_icons">
               <p class="ta-left">
-                <span> <img src="@/assets/lists/map-pin.svg" alt="" /> </span
-                >Saint-Petersburg
+                <span>
+                  <img src="@/assets/lists/check-circle.svg" alt="" />
+                </span>
+                actual
+              </p>
+              <div class="row_block">
+                <img src="~/assets/lists/pdf.svg" alt="" />
+                <img src="~/assets/lists/xlsx.svg" alt="" />
+                <img src="~/assets/lists/com.svg" alt="" />
+              </div>
+              <p class="views">
+                {{post.visitors}}<span><img src="@/assets/lists/eye.svg" alt=""/></span>
               </p>
             </div>
-            <h3 class="cost">1232$</h3>
-          </div>
-          <div class="row_block views_and_icons">
-            <p class="ta-left">
-              <span>
-                <img src="@/assets/lists/check-circle.svg" alt="" />
-              </span>
-              actual
-            </p>
-            <div class="row_block">
-              <img src="~/assets/lists/pdf.svg" alt="" />
-              <img src="~/assets/lists/xlsx.svg" alt="" />
-              <img src="~/assets/lists/com.svg" alt="" />
+            <div class="description">
+              <p>{{post.description}}</p>
             </div>
-            <p class="views">
-              1234 <span><img src="@/assets/lists/eye.svg" alt=""/></span>
-            </p>
           </div>
-          <div class="description">
-            <p>description</p>
+          <div class="after_content col-6 col-md-1">
+            <img src="@/assets/common/trash.svg" alt="" />
           </div>
-        </div>
-        <div class="after_content col-6 col-md-1">
-          <img src="@/assets/common/trash.svg" alt="" />
         </div>
       </div>
 
+
+<!-- archive -->
+
+
       <div
-        class="archive_content"
         v-else-if="status == 'archive'"
         key="archive"
       >
-        <div class="before_content  col-12 col-md-2">
-          <h3>14 days</h3>
-          <img src="@/assets/common/swap.svg" alt="" />
-        </div>
-        <div class="post_container col-12 col-md-10">
-          <div class="row_block">
-            <div>
-              <h3 class="ta-left">label</h3>
+        <div class="postWrapper">
+
+          <div class="before_content  col-12 col-md-2">
+            <h3>14 days</h3>
+            <img src="@/assets/common/swap.svg" alt="" />
+          </div>
+          <div class="post_container col-12 col-md-10">
+            <div class="row_block">
+              <div>
+                <h3 class="ta-left">label</h3>
+                <p class="ta-left">
+                  <span> <img src="@/assets/lists/map-pin.svg" alt="" /> </span
+                  >Saint-Petersburg
+                </p>
+              </div>
+              <h3 class="cost">1232$</h3>
+            </div>
+            <div class="row_block views_and_icons">
               <p class="ta-left">
-                <span> <img src="@/assets/lists/map-pin.svg" alt="" /> </span
-                >Saint-Petersburg
+                <span>
+                  <img src="@/assets/lists/check-circle.svg" alt="" />
+                </span>
+                actual
+              </p>
+              <div class="row_block">
+                <img src="~/assets/lists/pdf.svg" alt="" />
+                <img src="~/assets/lists/xlsx.svg" alt="" />
+                <img src="~/assets/lists/com.svg" alt="" />
+              </div>
+              <p class="views">
+                1234 <span><img src="@/assets/lists/eye.svg" alt=""/></span>
               </p>
             </div>
-            <h3 class="cost">1232$</h3>
-          </div>
-          <div class="row_block views_and_icons">
-            <p class="ta-left">
-              <span>
-                <img src="@/assets/lists/check-circle.svg" alt="" />
-              </span>
-              actual
-            </p>
-            <div class="row_block">
-              <img src="~/assets/lists/pdf.svg" alt="" />
-              <img src="~/assets/lists/xlsx.svg" alt="" />
-              <img src="~/assets/lists/com.svg" alt="" />
+            <div class="description">
+              <p>description</p>
             </div>
-            <p class="views">
-              1234 <span><img src="@/assets/lists/eye.svg" alt=""/></span>
-            </p>
           </div>
-          <div class="description">
-            <p>description</p>
-          </div>
-        </div>
       </div>
-      <div class="comments_content" v-else key="comments">
-        <div class="post_container col-12">
-          <div class="row_block">
-            <div>
-              <h3 class="ta-left">label</h3>
+      </div>
+
+<!-- COMMENTS -->
+
+      <div v-else key="comments">
+        <div class="postWrapper" v-for="comment in myComments" :key="comment.id">
+          <div class="post_container col-12">
+            <div class="row_block">
+              <div>
+                <h3 class="ta-left">label</h3>
+                <p class="ta-left">
+                  <span> <img src="@/assets/lists/map-pin.svg" alt="" /> </span
+                  >Saint-Petersburg
+                </p>
+              </div>
+              <h3 class="cost">1232$</h3>
+            </div>
+            <div class="row_block views_and_icons">
               <p class="ta-left">
-                <span> <img src="@/assets/lists/map-pin.svg" alt="" /> </span
-                >Saint-Petersburg
+                <span>
+                  <img src="@/assets/lists/check-circle.svg" alt="" />
+                </span>
+                actual
+              </p>
+              <div class="row_block">
+                <img src="~/assets/lists/pdf.svg" alt="" />
+                <img src="~/assets/lists/xlsx.svg" alt="" />
+                <img src="~/assets/lists/com.svg" alt="" />
+              </div>
+              <p class="views">
+                1234 <span><img src="@/assets/lists/eye.svg" alt=""/></span>
               </p>
             </div>
-            <h3 class="cost">1232$</h3>
-          </div>
-          <div class="row_block views_and_icons">
-            <p class="ta-left">
-              <span>
-                <img src="@/assets/lists/check-circle.svg" alt="" />
-              </span>
-              actual
-            </p>
-            <div class="row_block">
-              <img src="~/assets/lists/pdf.svg" alt="" />
-              <img src="~/assets/lists/xlsx.svg" alt="" />
-              <img src="~/assets/lists/com.svg" alt="" />
+            <div class="description">
+              <p>description</p>
             </div>
-            <p class="views">
-              1234 <span><img src="@/assets/lists/eye.svg" alt=""/></span>
-            </p>
-          </div>
-          <div class="description">
-            <p>description</p>
           </div>
         </div>
       </div>
@@ -141,13 +157,35 @@
 </template>
 
 <script>
+import Vue from 'vue'
 export default {
   layout: "profile",
   middleware: "auth",
+  async fetch(){
+    this.myComments = await this.$axios.$get('/user/comments')
+    this.myPosts = await this.$axios.$get('/projects/current')
+  },
   data() {
     return {
+      myPosts: [],
       status: "active"
     };
+  },
+  methods:{
+    goToPost(currentPost){
+        this.$router.push(`/posts/${currentPost.id}`);
+    },
+    async test(){
+      // console.log(this.$moment.locale())
+      // var date = new Date
+      // console.log('date: ', date.parse('2021-05-27T15:31:52.960+00:00'))
+      // console.log(Date.now())
+      // console.log(Date.parse('2021-05-27T15:31:52.960+00:00'))
+      // var timeDiff = Math.abs(Date.parse('2021-05-27T15:31:52.960+00:00') - Date.now());
+      // var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+      // console.log(diffDays)
+      console.log(this.$moment.subtract(1, 'days'))
+    }
   }
 };
 </script>
@@ -172,7 +210,7 @@ export default {
   .post_container {
     max-width: 95% !important;
   }
-  .active_content,
+  .postWrapper,
   .archive_content,
   .comments_content {
     justify-content: center !important;
@@ -187,7 +225,7 @@ export default {
   cursor: pointer;
   display: flex;
 }
-.active_content,
+.postWrapper,
 .archive_content,
 .comments_content {
   display: flex;

@@ -32,7 +32,7 @@
           <img src="~/assets/lists/com.svg" alt="" />
         </div>
         <p class="views">
-          1234 <span><img src="@/assets/lists/eye.svg" alt=""/></span>
+          {{post.visitors}}<span><img src="@/assets/lists/eye.svg" alt=""/></span>
         </p>
       </div>
       <div class="description">

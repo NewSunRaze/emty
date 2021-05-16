@@ -2,8 +2,7 @@
   <div class="container-fluid">
     <div class="container">
       <nuxt-link class="logo col-9 offset-1 col-lg-1 offset-lg-0 col-md-1 offset-md-0" to="/"
-        ><h1 class="logo">int.</h1></nuxt-link
-      >
+        ><h1 class="logo">int.</h1></nuxt-link>
       <toggle-input class="col-lg-2 col-md-3 offset-md-1 offset-lg-0 toggle"></toggle-input>
       <div class="mobile_nav col-1" v-b-toggle.sidebar-1>
         <img src="@/assets/common/chevron_left.svg" alt="" />
@@ -34,24 +33,7 @@
             >
           </div>
         </b-nav-item-dropdown>
-        <b-nav-item-dropdown
-          right
-          type="dark"
-          variant="dark"
-          menu-class="my-dropdown"
-        >
-          <template #button-content>
-            <em
-              ><img class="profile_icon" src="~/assets/header/dollar.svg" alt=""
-            /></em>
-          </template>
-
-          <b-dropdown-item to="/">Home</b-dropdown-item>
-          <b-dropdown-item to="/second">Second page</b-dropdown-item>
-          <b-dropdown-item to="/auth/login">login</b-dropdown-item>
-          <b-dropdown-item to="/auth/signup">Signup</b-dropdown-item>
-          <b-dropdown-item to="/profile/1/ads">Adds</b-dropdown-item>
-        </b-nav-item-dropdown>
+        <nuxt-link to="/donat"><img class="profile_icon" src="~/assets/header/dollar.svg" alt=""></nuxt-link>
       </div>
     </div>
   </div>

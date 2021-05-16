@@ -7,7 +7,7 @@
           <div class="row">
             <div class="userName_logo">Y</div>
             <p class="userName">
-              {{comment.author.login}} · {{comment.created_at}} · <span class="gold">{{ (comment.author.id === currentPost.user.id) ? 'author' : '' }}</span>
+              {{(comment.author.first_name + " " + comment.author.last_name) || comment.author.login}} · {{ comment.created_at | moment("from", "now") }} · <span class="gold">{{ (comment.author.id === currentPost.user.id) ? 'author' : '' }}</span>
             </p>
           </div>
           <div>
@@ -15,8 +15,9 @@
               {{comment.text}}
             </p>
           </div>
-          <div class="btn_container">
-            <button @click="reply(comment.id)">123</button></div>
+          <!-- <div class="btn_container">
+            <button @click="reply(comment.id)">123</button>
+          </div> -->
         </div>
       </div>
     </div>
@@ -31,9 +32,9 @@
       <button @click.prevent="send()">
         <img src="@/assets/common/send.svg" alt="" />
       </button>
-      <button @click.prevent="test()">123
+      <!-- <button @click.prevent="test()">123
         <img src="@/assets/common/send.svg" alt="" />
-      </button>
+      </button> -->
     </div>
   </div>
 </template>
@@ -48,7 +49,8 @@ export default {
     return {
       currentPost: "",
       allComments: "",
-      commentText: ""
+      commentText: "",
+      replyCommentId: ""
     };
   },
   methods: {
@@ -64,22 +66,28 @@ export default {
       }
       try{
           const rezult = await this.$axios.$post(`/projects/${this.currentPost.id}/comments`,{
-            "parent_comment_id": "string",
+            "parent_comment_id": this.replyCommentId,
             "text": this.commentText
           })
+          this.allComments = rezult
           console.log(rezult)
+          this.commentText = ""
         }
         catch(e){
           console.log(e)
         }
     },
-    async test() {
-      const rezult = await this.$axios.$post(`/projects/${this.currentPost.id}/comments`,{
-          "parent_comment_id": "string",
-          "text": this.commentText
-        })
-        console.log(rezult)
+    reply(id){
+      this.replyCommentId = id
+      console.log(this.replyCommentId)
     },
+    // async test() {
+    //   const rezult = await this.$axios.$post(`/projects/${this.currentPost.id}/comments`,{
+    //       "parent_comment_id": null,
+    //       "text": this.commentText
+    //     })
+    //     console.log(rezult)
+    // },
   }
 };
 </script>

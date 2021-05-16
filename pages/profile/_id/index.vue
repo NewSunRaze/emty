@@ -64,7 +64,6 @@ export default {
     },
     async send() {
       if(this.first_name,this.last_name,this.email == false){
-        console.table(this.first_name,this.last_name,this.email)
         return
       }
       try{

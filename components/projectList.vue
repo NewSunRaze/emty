@@ -17,7 +17,8 @@
             >Saint-Petersburg
           </p>
         </div>
-        <h3 class="cost">{{ post.money_amount }} $</h3>
+        <img class="cost" :src="require('@/assets/common/non_paid_active.svg')" v-if="!post.money_amount"/>
+        <h3 class="cost" v-else>{{ post.money_amount }} $</h3>
       </div>
       <div class="row_block views_and_icons">
         <p class="ta-left gold">
@@ -32,7 +33,7 @@
           <img src="~/assets/lists/com.svg" alt="" />
         </div>
         <p class="views">
-          1234 <span><img src="@/assets/lists/eye.svg" alt=""/></span>
+          {{post.visitors}}<span><img src="@/assets/lists/eye.svg" alt=""/></span>
         </p>
       </div>
       <div class="description">

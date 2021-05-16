@@ -32,12 +32,12 @@
           </div>
         </div>
         <div class="input_wrapper">
-          <input type="text" placeholder="Region" />
+          <input type="text" placeholder="Region"
+            @click="getOptionsModal('region')" />
           <div>
             <img
               src="@/assets/common/navigation.svg"
               alt=""
-              @click="getOptionsModal('region')"
             />
           </div>
         </div>

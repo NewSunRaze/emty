@@ -27,11 +27,11 @@ export const mutations = {
 
 export const actions = {
   async fetchInvestPosts({ commit }) {
-    const invest_posts = await this.$axios.$get("projects/invest_item");
+    let invest_posts = (await this.$axios.$get("projects/invest_item")).reverse();
     commit("SET_INVEST_POSTS", invest_posts);
   },
   async fetchTeamPosts({ commit }) {
-    const team_posts = await this.$axios.$get("projects/team_item");
+    const team_posts = (await this.$axios.$get("projects/team_item")).reverse();
     commit("SET_TEAM_POSTS", team_posts);
   },
   // async fetchOneInvestPost({ commit }, post_id) {
