@@ -41,6 +41,7 @@
 
 <script>
 export default {
+  name:"profile",
   layout: "profile",
   middleware: "auth",
   data() {

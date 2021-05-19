@@ -17,7 +17,8 @@
             >Saint-Petersburg
           </p>
         </div>
-        <h3 class="cost">{{ post.money_amount }}$</h3>
+        <img class="cost" :src="require('@/assets/common/non_paid_active.svg')" v-if="!post.money_amount"/>
+        <h3 class="cost" v-else>{{ post.money_amount }} $</h3>
       </div>
       <div class="row_block views_and_icons">
         <p class="ta-left">
@@ -60,7 +61,7 @@ export default {
     },
     openpost(post) {
       this.$router.push({
-        path: `/posts/${post.item_id}`,
+        path: `/posts/${post.id}`,
         query: { postType: "Team" }
       });
     }

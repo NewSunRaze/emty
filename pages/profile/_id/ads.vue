@@ -27,7 +27,7 @@
       <div v-if="status == 'active'" key="active">
         <div class="postWrapper" v-for="post in myPosts" :key="post.id">
           <div class="before_content col-6 col-md-2">
-            <h3>{{ Date()  | moment("from", post.created_at) }}</h3>
+            <h3>{{ post.actual_end_time  | moment("from", "now") }}</h3>
             <img src="@/assets/common/swap.svg" alt="" />
           </div>
           <div class="post_container col-12 col-md-8" @click="goToPost(post)">
@@ -61,7 +61,7 @@
               <p>{{post.description}}</p>
             </div>
           </div>
-          <div class="after_content col-6 col-md-1">
+          <div class="after_content col-6 col-md-1" @click="test()">
             <img src="@/assets/common/trash.svg" alt="" />
           </div>
         </div>
@@ -176,15 +176,17 @@ export default {
         this.$router.push(`/posts/${currentPost.id}`);
     },
     async test(){
-      // console.log(this.$moment.locale())
+      console.log(this.myPosts[0].actual_end_time)
+      const a = this.$moment('now').isSameOrAfter(this.myPosts[0].actual_end_time)
+      console.log(a)
       // var date = new Date
       // console.log('date: ', date.parse('2021-05-27T15:31:52.960+00:00'))
       // console.log(Date.now())
       // console.log(Date.parse('2021-05-27T15:31:52.960+00:00'))
       // var timeDiff = Math.abs(Date.parse('2021-05-27T15:31:52.960+00:00') - Date.now());
       // var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-      // console.log(diffDays)
-      console.log(this.$moment.subtract(1, 'days'))
+      // // console.log(diffDays)
+      // console.log(this.$moment.subtract(1, 'days'))
     }
   }
 };

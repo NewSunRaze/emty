@@ -142,18 +142,21 @@ export default {
       }
     },
     async createPost(){
+      const formData = new FormData();
+      const project = JSON.stringify({
+        "description": this.description,
+        "industry": "test",
+        "label": this.label,
+        "money_amount": this.money_amount,
+        "project_type": this.computed_project_type,
+        "region": "test"
+      });
+      formData.append('pdf_file', this.pdf);
+      formData.append('project ', project);
+      formData.append('xlsx_file', this.xlsx);
+
       try{
-        const rezult = await this.$axios.$post("projects",{
-            "description": this.description,
-            "industry": "test",
-            "pdf_file": this.pdf,
-            "xlsx_file": this.xlsx,
-            "label": this.label,
-            "money_amount": this.money_amount,
-            "project_type": this.computed_project_type,
-            "region": "test"
-        })
-        console.log(rezult.id)
+        const rezult = await this.$axios.$post("projects", formData);
         this.$router.push(`/posts/${rezult.id}`);
       }
       catch(e){
