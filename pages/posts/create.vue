@@ -113,7 +113,7 @@
 
 
         <b-button class="button" type="submit">+ Add new project</b-button>
-        <b-button class="button" @click="test()">test</b-button>
+        <!-- <b-button class="button" @click="test()">test</b-button> -->
 
       </div>
     </b-form>
