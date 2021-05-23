@@ -2,7 +2,7 @@
   <div class="container">
     <h1>Create an account</h1>
     <div class="form_container">
-      <b-form @submit="onSubmit" @reset="onReset" v-if="show" flex class="form">
+      <b-form flex class="form">
         <b-form-group
           class="mb-3"
           id="input-group-2"
@@ -11,10 +11,14 @@
         >
           <b-form-input
             id="input-1"
-            v-model="form.name"
+            v-model="$v.form.name.$model"
+            :state="validateState('name')"
+            aria-describedby="input-1-live-feedback"
             placeholder="Enter name"
-            required
+            aria-placeholder="test"
           ></b-form-input>
+
+        <b-form-invalid-feedback id="input-1-live-feedback">This is a required field.</b-form-invalid-feedback>
         </b-form-group>
 
         <b-form-group
@@ -26,11 +30,12 @@
         >
           <b-form-input
             id="input-2"
-            v-model="form.email"
+            v-model.trim="$v.form.email.$model"
+            :state="validateState('email')"
             type="email"
             placeholder="Enter email"
-            required
           ></b-form-input>
+          <b-form-invalid-feedback id="input-2-live-feedback">This is a required field and must be email.</b-form-invalid-feedback>
         </b-form-group>
         <b-form-group
           class="mb-3"
@@ -40,35 +45,16 @@
         >
           <b-form-input
             id="input-3"
-            v-model="form.password"
+            v-model.trim="$v.form.password.$model"
+            :state="validateState('password')"
             type="password"
+            aria-describedby="input-3-live-feedback"
             placeholder="Enter password"
-            required
           ></b-form-input>
+          <b-form-invalid-feedback id="input-3-live-feedback">This is a required field.</b-form-invalid-feedback>
         </b-form-group>
-
-        <!-- <b-form-group id="input-group-3" label="Food:" label-for="input-3">
-        <b-form-select
-          id="input-3"
-          v-model="form.food"
-          :options="foods"
-          required
-        ></b-form-select>
-      </b-form-group> -->
-
-        <b-form-group id="input-group-4" v-slot="{ ariaDescribedby }">
-          <b-form-checkbox-group
-            variant="dark"
-            v-model="form.checked"
-            id="checkboxes-4"
-            :aria-describedby="ariaDescribedby"
-          >
-            <b-form-checkbox value="me">Check me out</b-form-checkbox>
-          </b-form-checkbox-group>
-        </b-form-group>
-
         <div class="btn_cont">
-          <b-button @click="onSubmit" variant="dark" class="but"
+          <b-button @click.prevent="submit" variant="dark" class="but"
             >Sign Up</b-button
           >
           <nuxt-link to="/auth/login">or Sign in</nuxt-link>
@@ -79,6 +65,7 @@
 </template>
 
 <script>
+import { required, email } from 'vuelidate/lib/validators'
 export default {
   data() {
     return {
@@ -86,19 +73,33 @@ export default {
         email: "",
         name: "",
         password: ""
-      },
-      foods: [
-        { text: "Select One", value: null },
-        "Carrots",
-        "Beans",
-        "Tomatoes",
-        "Corn"
-      ],
-      show: true
+      }
     };
   },
+  validations: {
+    form: {
+      email: {
+        email,
+        required
+      },
+      name: {
+        required,
+      },
+      password: {
+        required,
+      }
+    }
+  },
   methods: {
-    async onSubmit(event) {
+    validateState(params) {
+      const { $dirty, $error } = this.$v.form[params];
+      return $dirty ? !$error : null;
+    },
+    async submit() {
+      this.$v.form.$touch();
+      if (this.$v.form.$anyError) {
+        return;
+      }
       try{
         this.$axios.$post('/auth/registration',{
           "email": this.form.email,
@@ -110,29 +111,19 @@ export default {
               'email': this.form.email,
               'password': this.form.password
             }
-      });
+          });
         })
-        console.log(result)
-
-        this.$router.push("/");
       }
       catch(e){
-        console.log(e)
+        alert(123)
+          // this.$bvToast.toast(`We have an error: ${e}`, {
+          //   title: 'Ops...',
+          //   variant: 'danger',
+          //   autoHideDelay: 5000,
+          //   appendToast: false
+          // })
       }
     },
-    onReset(event) {
-      event.preventDefault();
-      // Reset our form values
-      this.form.email = "";
-      this.form.name = "";
-      this.form.food = null;
-      this.form.checked = [];
-      // Trick to reset/clear native browser form validation state
-      this.show = false;
-      this.$nextTick(() => {
-        this.show = true;
-      });
-    }
   }
 };
 </script>

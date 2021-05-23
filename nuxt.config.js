@@ -15,7 +15,9 @@ export default {
   css: ["@/static/style.css"],
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
-    '~/plugins/vue-moment.js'],
+    '~/plugins/numericOnly.js',
+    '~/plugins/vue-moment.js',
+    '~/plugins/vuelidate.js'],
   router: {
     linkActiveClass: "active-link",
     linkExactActiveClass: "exact-active-link"
@@ -48,7 +50,7 @@ export default {
         },
         endpoints: {
           login: { url: "/auth/login", method: "post" },
-          logout: { url: "/profile/logout", method: "get" },
+          logout: { url: "/auth/logout", method: "get" },
           user: { url: "/user/get_profile", method: "get" }
         }
       }

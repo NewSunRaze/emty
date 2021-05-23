@@ -13,19 +13,19 @@
       <div class="inputs_container">
         <div>
           <p>Your first name</p>
-          <input type="text" v-model="first_name" />
+          <input type="text" v-model="form.first_name" />
         </div>
         <div>
           <p>Your last name</p>
-          <input type="text" v-model="last_name" />
+          <input type="text" v-model="form.last_name" />
         </div>
         <div>
           <p>Your mail</p>
-          <input type="text" v-model="email" />
+          <input type="text" v-model="form.email" />
         </div>
         <div>
           <p>Your password</p>
-          <input type="password" v-model="password" />
+          <input type="password" v-model="form.password" />
         </div>
       </div>
       <div class="btn_cont">
@@ -40,18 +40,38 @@
 </template>
 
 <script>
+import { required, email } from 'vuelidate/lib/validators'
 export default {
   name:"profile",
   layout: "profile",
   middleware: "auth",
   data() {
     return {
-      first_name: this.$store.state.auth.user.first_name,
-      last_name: this.$store.state.auth.user.last_name,
-      email: this.$store.state.auth.user.email,
-      password: "*************",
-      file: []
+      form:{
+        first_name: this.$store.state.auth.user.first_name,
+        last_name: this.$store.state.auth.user.last_name,
+        email: this.$store.state.auth.user.email,
+        password: "*************",
+        file: []
+      }
     };
+  },
+  validations:{
+    form:{
+      first_name:{
+        required
+      },
+      last_name: {
+        required
+      },
+      email:{
+        email,
+        required
+      },
+      password:{
+        required
+      }
+    }
   },
   methods: {
     async logout() {
@@ -64,33 +84,39 @@ export default {
       this.file = data;
     },
     async send() {
-      if(this.first_name,this.last_name,this.email == false){
-        return
-      }
-      try{
-        this.$axios.$post("user/change_profile", {
-            first_name: this.first_name,
-            last_name: this.last_name,
-            email: this.email,
-            password: this.password,
-            file: this.file
-        }).then(r=>{
-          this.$bvToast.toast(`Done!`, {
-            title: 'The site message',
-            variant: 'success',
-            autoHideDelay: 1000,
-            appendToast: false
-          })
-        });
-      }
-      catch(e){
-          this.$bvToast.toast(`We have an error: ${e}`, {
+          this.$bvToast.toast(`Еще не доделал =(`, {
             title: 'Ops...',
             variant: 'danger',
             autoHideDelay: 2000,
             appendToast: false
           })
-      }
+    //   if(this.first_name,this.last_name,this.email == false){
+    //     return
+    //   }
+    //   try{
+    //     this.$axios.$post("user/change_profile", {
+    //         first_name: this.first_name,
+    //         last_name: this.last_name,
+    //         email: this.email,
+    //         password: this.password,
+    //         file: this.file
+    //     }).then(r=>{
+    //       this.$bvToast.toast(`Done!`, {
+    //         title: 'The site message',
+    //         variant: 'success',
+    //         autoHideDelay: 1000,
+    //         appendToast: false
+    //       })
+    //     });
+    //   }
+    //   catch(e){
+          // this.$bvToast.toast(`We have an error: ${e}`, {
+          //   title: 'Ops...',
+          //   variant: 'danger',
+          //   autoHideDelay: 2000,
+          //   appendToast: false
+          // })
+    //   }
     }
   }
 };

@@ -1,85 +1,97 @@
 <template>
   <div class="container">
     <h1>Sign in to your account</h1>
-    <b-form @submit="onSubmit">
+    <b-form @submit.stop.prevent="submit">
       <b-form-group id="input-group-1" label="E-mail:" label-for="input-1">
         <b-form-input
           id="input-1"
-          v-model="login.login"
           type="email"
           placeholder="mail@example.com"
-          required
+          :state="validateState('email')"
+          v-model.trim="$v.login.email.$model"
+          aria-describedby="input-1-live-feedback"
         ></b-form-input>
+        <b-form-invalid-feedback id="input-1-live-feedback">This is a required field and must be email.</b-form-invalid-feedback>
       </b-form-group>
 
       <b-form-group id="input-group-2" label="Password:" label-for="input-2">
         <b-form-input
           id="input-2"
-          v-model="login.password"
-          placeholder="Password"
+          v-model="$v.login.password.$model"
+          :state="validateState('password')"
+          aria-describedby="input-2-live-feedback"
+          placeholder="password"
           type="password"
-          required
         ></b-form-input>
+        <b-form-invalid-feedback id="input-2-live-feedback">This is a required field.</b-form-invalid-feedback>
       </b-form-group>
 
       <div class="btn_cont">
-        <b-button @click.prevent="localAuth" variant="dark" class="but"
+        <b-button type="submit" variant="dark" class="but"
           >Sign in</b-button
-        >
-        <b-button @click.prevent="fetchAuth" variant="dark" class="but"
-          >testbtn</b-button
         >
         <nuxt-link to="/auth/signup">or Sign Up</nuxt-link>
       </div>
-      <p class="error">{{ error }}</p>
     </b-form>
   </div>
 </template>
 
 <script>
+import { required, email } from 'vuelidate/lib/validators'
 export default {
   data() {
     return {
       login: {
-        login: "",
+        email: "",
         password: ""
       },
-      error: ""
     };
   },
+  validations:{
+    login:{
+      email:{
+        required,
+        email
+      },
+      password: {
+        required
+      },
+    }
+  },
   methods: {
-    async localAuth() {
-      try{
-        await this.$auth.loginWith("local", {
-          data: {
-            'email': this.login.login,
-            'password': this.login.password
-          }
-        });
-      }
-      catch(e){
+    validateState(params) {
+      const { $dirty, $error } = this.$v.login[params];
+      return $dirty ? !$error : null;
+    },
+    async submit() {
+      this.$v.login.$touch()
+
+      if(!this.$v.login.$error){
+        try{
+          this.$auth.loginWith("local", {
+            data: {
+              'email': this.login.email,
+              'password': this.login.password
+            }
+          });
+        }
+        catch(e){
           this.$bvToast.toast(`We have an error: ${e}`, {
             title: 'Ops...',
             variant: 'danger',
             autoHideDelay: 5000,
             appendToast: false
           })
+        }
       }
-    },
-    async fetchAuth() {
-        const rezult = await this.$axios.$post("auth/login",{
-          "email": "test123@mail.ru",
-          "password": "test1q"
-        })
-      console.log(rezult);
     },
     onReset(event) {
       event.preventDefault();
-      this.form.email = "";
-      this.form.name = "";
-      this.form.checked = [];
+      this.login.email = "";
+      this.login.password = "";
     },
-    onSubmit(event) {}
+  },
+  created(){
   }
 };
 </script>

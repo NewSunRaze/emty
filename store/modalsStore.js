@@ -10,10 +10,14 @@ export const state = () => ({
   mobileModal: false,
   optionsModalToggle: false,
   regions: false,
-  industry: false
+  industry: false,
+  currentService: ''
 });
 
 export const mutations = {
+  SET_CURRENT_SERVICE(state, params){
+    state.currentService = params;
+  },
   CANGE_MOBILE_MODAL(state) {
     state.mobileModal = !state.mobileModal;
   },
@@ -30,6 +34,9 @@ export const mutations = {
 };
 
 export const actions = {
+  callChangeCurrentService({commit}, params){
+    commit("SET_CURRENT_SERVICE", params);
+  },
   callChangeMobileModal({ commit }) {
     commit("CANGE_MOBILE_MODAL");
   },
@@ -48,6 +55,9 @@ export const actions = {
 };
 
 export const getters = {
+  getCurrentService(state){
+    return state.currentService
+  },
   getMobileModal(state) {
     return state.mobileModal;
   },

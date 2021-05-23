@@ -173,7 +173,7 @@ export default {
   },
   methods:{
     goToPost(currentPost){
-        this.$router.push(`/posts/${currentPost.id}`);
+      this.$router.push(`/posts/${currentPost.id}`);
     },
     async test(){
       console.log(this.myPosts[0].actual_end_time)

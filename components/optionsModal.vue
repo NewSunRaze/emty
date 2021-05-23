@@ -39,15 +39,7 @@
         </div>
         <div v-show="!regions" class="popular_cont">
           <div>
-            <span style="width:100%">IT</span>
-            <span>HoReCa</span>
-            <span>Services</span>
-            <span>Government</span>
-            <span style="width:100%">Energetics</span>
-            <span>Development</span>
-            <span>Med</span>
-            <span>Media</span>
-            <span style="width:100%">Other</span>
+            <span v-for="service in services" :key="service" @click="setCurrentService(service)">{{service}}</span>
           </div>
         </div>
       </div>
@@ -57,10 +49,18 @@
 
 <script>
 export default {
+  async fetch(){
+  },
   data() {
-    return {};
+    return {
+      services:['IT','HoReCa','Services','Government','Energetics','Development','Med','Media', 'Other']
+    };
   },
   methods: {
+    setCurrentService(service){
+      this.$store.dispatch("modalsStore/callChangeCurrentService", service);
+      this.$store.dispatch("modalsStore/callChangeOptionsModalToggle");
+    },
     changeOptionsModalShowing() {
       this.$store.dispatch("modalsStore/callChangeOptionsModalToggle");
     }

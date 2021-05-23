@@ -1,61 +1,92 @@
 <template>
   <div class="container center">
-    <div class="create_post_container">
+    <b-form @submit.stop.prevent="createPost" class="create_post_container">
       <div class="container">
         <div class="toggle">
-          <input type="checkbox" v-model="project_type" />
+          <input type="checkbox" v-model="form.project_type" />
           <span class="toggle_btn"></span>
           <span class="labels"></span>
           <span class="bg"></span>
         </div>
       </div>
+
       <div class="inputs_container">
-        <div class="input_wrapper">
-          <input type="text" placeholder="Title" v-model="label" />
-        </div>
-        <div class="input_wrapper">
-          <input
-            type="number"
-            placeholder="Amount in dollars"
-            :disabled="non_paid"
-            v-model.number="money_amount"
-          />
-          <div>
-            <img
-              :src="
-                this.non_paid
-                  ? require('@/assets/common/non_paid_active.svg')
-                  : require('@/assets/common/non_paid.svg')
-              "
-              @click="non_paid = !non_paid"
-            />
+
+        <b-form-group id="input-group-10">
+          <div class="input_wrapper">
+            <b-form-input type="text"
+              id="input-10"
+              placeholder="Title"
+              v-model.trim="$v.form.label.$model"
+              aria-describedby="input-10-live-feedback"
+              :state="validateState('label')"
+            ></b-form-input>
+            <b-form-invalid-feedback id="input-10-live-feedback">This is a required field.</b-form-invalid-feedback>
           </div>
-        </div>
-        <div class="input_wrapper">
-          <input type="text" placeholder="Region"
-            @click="getOptionsModal('region')" />
-          <div>
-            <img
-              src="@/assets/common/navigation.svg"
-              alt=""
-            />
+        </b-form-group>
+
+        <b-form-group id="input-group-11">
+          <div class="input_wrapper">
+            <b-form-input
+              v-numericOnly
+              id="input-11"
+              placeholder="Amount in dollars"
+              :disabled="form.non_paid"
+              v-model="form.money_amount"
+              aria-describedby="input-11-live-feedback"
+            ></b-form-input>
+            <div class="icon">
+              <img
+                :src="
+                  this.form.non_paid
+                    ? require('@/assets/common/non_paid_active.svg')
+                    : require('@/assets/common/non_paid.svg')
+                "
+                @click="change_non_paid()"
+              />
+            </div>
+            <b-form-invalid-feedback id="input-11-live-feedback"></b-form-invalid-feedback>
           </div>
-        </div>
-        <div class="input_wrapper">
-          <input type="text" placeholder="Industry" />
-          <div>
-            <img
-              src="@/assets/common/industry.svg"
-              alt=""
+        </b-form-group>
+
+        <b-form-group id="input-group-12">
+          <div class="input_wrapper">
+            <b-form-input
+              id="input-12"
+              placeholder="Region"
+              @click="getOptionsModal('region')"
+              readonly
+            ></b-form-input>
+            <div class="icon">
+              <img
+                src="@/assets/common/navigation.svg"
+                alt=""
+              />
+            </div>
+            <b-form-invalid-feedback id="input-12-live-feedback"></b-form-invalid-feedback>
+          </div>
+        </b-form-group>
+
+        <b-form-group id="input-group-13">
+          <div class="input_wrapper">
+            <b-form-input
+              id="input-13"
+              :value="computed_industry"
+              placeholder="Industry"
               @click="getOptionsModal('industry')"
-            />
+              readonly
+            ></b-form-input>
+            <div class="icon">
+              <img src="@/assets/common/industry.svg"/>
+            </div>
+            <b-form-invalid-feedback id="input-13-live-feedback"></b-form-invalid-feedback>
           </div>
-        </div>
+        </b-form-group>
         <div class="add_files">
           <div
             class="file-upload"
             @click="upload('pdf')"
-            :class="pdf ? 'uploaded' : ''"
+            :class="form.pdf ? 'uploaded' : ''"
           >
             <input type="file" ref="pdf" @change="changeHandler('pdf')" />
             <div>pdf</div>
@@ -63,7 +94,7 @@
           <div
             class="file-upload"
             @click="upload('xlsx')"
-            :class="xlsx ? 'uploaded' : ''"
+            :class="form.xlsx ? 'uploaded' : ''"
           >
             <input type="file" ref="xlsx" @change="changeHandler('xlsx')" />
             <div>xlsx</div>
@@ -71,45 +102,90 @@
         </div>
         <b-form-textarea
           id="textarea"
-          v-model="description"
+          v-model="$v.form.description.$model"
           placeholder="Type description"
           rows="3"
           max-rows="6"
+          :state="validateState('description')"
+          aria-describedby="textarea-live-feedback"
         ></b-form-textarea>
-        <button @click="createPost()">+ Add new project</button>
+        <b-form-invalid-feedback id="textarea-live-feedback">This is a required field.</b-form-invalid-feedback>
+
+
+        <b-button class="button" type="submit">+ Add new project</b-button>
+        <b-button class="button" @click="test()">test</b-button>
+
       </div>
-    </div>
+    </b-form>
   </div>
 </template>
 
 <script>
+import optionsModal from "@/components/optionsModal.vue";
+import { required } from 'vuelidate/lib/validators'
 export default {
   middleware: "auth",
+  components:{
+    optionsModal
+  },
   data() {
     return {
-      description: "",
-      project_type: false,
-      label:"",
-      money_amount:"",
-      pdf: "",
-      xlsx: "",
-      non_paid: false,
-      showAgain: true
+      form:{
+        description: "",
+        project_type: false,
+        label:"",
+        money_amount:"",
+        pdf: "",
+        xlsx: "",
+        industry: '',
+        non_paid: false,
+        showAgain: true
+      }
     };
   },
+  validations:{
+    form:{
+      label:{
+        required
+      },
+      description:{
+        required
+      }
+    }
+
+  },
   methods: {
+    test(){
+        const project = JSON.stringify({
+          "description": this.form.description,
+          "industry": this.computed_industry,
+          "label": this.form.label,
+          "money_amount": this.form.money_amount,
+          "project_type": (this.form.project_type ? 'TEAM' : 'INVEST'),
+          "region": "test"
+        });
+      console.log(project)
+    },
+    validateState(params) {
+      const { $dirty, $error } = this.$v.form[params];
+      return $dirty ? !$error : null;
+    },
     upload(type) {
       if (type == "pdf") {
-        this.pdf == "" ? this.$refs.pdf.click() : (this.pdf = "");
+        this.form.pdf == "" ? this.$refs.pdf.click() : (this.form.pdf = "");
       }
       if (type == "xlsx") {
-        this.xlsx ? (this.xlsx = "") : this.$refs.xlsx.click();
+        this.form.xlsx ? (this.form.xlsx = "") : this.$refs.xlsx.click();
       }
     },
     changeHandler(type) {
       type == "pdf"
-        ? (this.pdf = this.$refs.pdf.files[0])
-        : (this.xlsx = this.$refs.xlsx.files[0]);
+        ? (this.form.pdf = this.$refs.pdf.files[0])
+        : (this.form.xlsx = this.$refs.xlsx.files[0]);
+    },
+    change_non_paid() {
+      this.form.non_paid = !this.form.non_paid
+      this.form.money_amount = "";
     },
     getOptionsModal(type) {
       if (type == "region") {
@@ -119,59 +195,38 @@ export default {
       }
       this.$store.dispatch("modalsStore/callChangeOptionsModalToggle");
     },
-    create() {
-      if (this.showAgain) {
-        var informModal = {
-          show: true,
-          params: {
-            decription:
-              "Whrite the number of the won tender in the title and in description offer to the investor",
-            firstBtn: false,
-            secondBtn: "Ok, don`t show again"
-          }
-        };
-      } else {
-        var informModal = {
-          show: true,
-          params: {
-            decription: "Ads in this category are paid",
-            firstBtn: true,
-            secondBtn: `Pay now`
-          }
-        };
-      }
-    },
     async createPost(){
-      const formData = new FormData();
-      const project = JSON.stringify({
-        "description": this.description,
-        "industry": "test",
-        "label": this.label,
-        "money_amount": this.money_amount,
-        "project_type": this.computed_project_type,
-        "region": "test"
-      });
-      formData.append('pdf_file', this.pdf);
-      formData.append('project ', project);
-      formData.append('xlsx_file', this.xlsx);
 
-      try{
-        const rezult = await this.$axios.$post("projects", formData);
-        this.$router.push(`/posts/${rezult.id}`);
-      }
-      catch(e){
-        console.log(e)
+      this.$v.form.$touch()
+      console.log(this.form)
+      if(!this.$v.form.$error){
+        const formData = new FormData();
+        const project = JSON.stringify({
+          "description": this.form.description,
+          "industry": this.computed_industry,
+          "label": this.form.label,
+          "money_amount": this.form.money_amount,
+          "project_type": (this.form.project_type ? 'TEAM' : 'INVEST'),
+          "region": "test"
+        });
+        formData.append('pdf_file', this.form.pdf);
+        formData.append('project ', project);
+        formData.append('xlsx_file', this.form.xlsx);
+
+        console.log(formData)
+        try{
+          const rezult = await this.$axios.$post("projects", formData);
+          this.$router.push(`/posts/${rezult.id}`);
+        }
+        catch(e){
+          console.log(e)
+        }
       }
     }
   },
   computed:{
-    computed_project_type: function(){
-      return this.project_type ? 'TEAM' : 'INVEST'
-    }
-  },
-  watch: {
-    non_paid() {
-      this.money_amount = "";
+    computed_industry(){
+      return this.$store.getters["modalsStore/getCurrentService"];
     }
   }
 };
@@ -184,6 +239,12 @@ export default {
   .inputs_container {
     width: 100%;
   }
+}
+.form-control[readonly]{
+  background-color: white !important;
+}
+.form-control {
+  height: auto !important;
 }
 .add_files {
   width: 100%;
@@ -255,11 +316,12 @@ textarea::placeholder {
   border-radius: 5px;
 }
 .input_wrapper {
+  display: flex;
+  flex-direction: column;
   position: relative;
-  margin-bottom: 10px;
   cursor: pointer;
 }
-.input_wrapper div {
+.input_wrapper .icon {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -288,7 +350,7 @@ button {
   border-radius: 5px;
   font-size: 18px;
   margin-top: 50px;
-  outline: none;
+  outline: none !important;
   border: 1px solid black;
 }
 input::placeholder {

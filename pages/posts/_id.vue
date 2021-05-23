@@ -21,7 +21,7 @@
             actual
           </p>
           <div class="row_block">
-            <img src="~/assets/lists/pdf.svg" alt="" />
+            <img src="~/assets/lists/pdf.svg" alt="" @click="getFile('PDF')"/>
             <img src="~/assets/lists/xlsx.svg" alt="" />
             <img src="~/assets/lists/com.svg" alt="" />
           </div>
@@ -57,6 +57,15 @@ export default {
     post() {
       return this.$store.getters["firstPage/firstPageStore/getCurrentPost"];
     }
+  },
+  methods:{
+    async getFile(file_type){
+      const rezult = await this.$axios.$get(`/projects/${this.post.id}/file/${file_type}`);
+      console.log(rezult)
+    }
+  },
+  mounted(){
+    console.log(this.post)
   }
 };
 </script>
@@ -110,6 +119,7 @@ export default {
   text-align: left;
 }
 .views_and_icons .row_block img {
+  cursor: pointer;
   margin-right: 10px;
 }
 .views_and_icons .row_block p {
