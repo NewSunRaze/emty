@@ -109,7 +109,7 @@
           :state="validateState('description')"
           aria-describedby="textarea-live-feedback"
         ></b-form-textarea>
-        <b-form-invalid-feedback id="textarea-live-feedback">This is a required field.</b-form-invalid-feedback>
+        <b-form-invalid-feedback id="textarea-live-feedback">This is a required field and its length cannot be more than 5000 characters.</b-form-invalid-feedback>
 
 
         <b-button class="button" type="submit">+ Add new project</b-button>
@@ -122,7 +122,7 @@
 
 <script>
 import optionsModal from "@/components/optionsModal.vue";
-import { required } from 'vuelidate/lib/validators'
+import { required, maxLength } from 'vuelidate/lib/validators'
 export default {
   middleware: "auth",
   components:{
@@ -149,7 +149,8 @@ export default {
         required
       },
       description:{
-        required
+        required,
+        maxLength: maxLength(5000)
       }
     }
 
