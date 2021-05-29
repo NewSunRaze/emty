@@ -1,5 +1,8 @@
 <template>
-  <div
+<div>
+  <!-- <vue-dadata token="ece8872aafc165a2116709ee9bb1d5c292d83dad"></vue-dadata> -->
+</div>
+  <!-- <div
     id="modal-1"
     class="container-fluid"
     v-show="optionsModalToggle"
@@ -44,11 +47,15 @@
         </div>
       </div>
     </transition>
-  </div>
+  </div> -->
 </template>
 
 <script>
+import VueDadata from 'vue-dadata'
 export default {
+  components: {
+    'vue-dadata': VueDadata
+  },
   async fetch(){
   },
   data() {

@@ -17,6 +17,7 @@
     "moment-timezone": "^0.5.33",
     "node-sass": "^5.0.0",
     "nuxt": "^2.14.6",
+    "vue-dadata": "^1.4.10",
     "vue-moment": "^4.1.0",
     "vuelidate": "^0.7.6"
   },
